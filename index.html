@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- versione 2026-11-18 16:00 -->
+<!-- versione 2026-11-18-bandi -->
 <title>Gang Unit · NOW V4</title>
 <meta name="description" content="Regolamento e manuale operativo della Gang Unit del Los Santos Police Department · NOW V4 Roleplay.">
 <meta property="og:title" content="Gang Unit · NOW V4 — Area Agenti">
@@ -932,6 +932,7 @@ body.comando #v-comando .blocco{display:none}
 .cmd-vuoto{padding:30px;text-align:center;border:1px dashed var(--linea2);border-radius:16px;color:var(--tenue)}
 </style>
 <!-- ═════ EXTRA: intro, temi, tessera, gradi, cursore (blocco separato, non tocca il resto) ═════ -->
+<script>window.GU_RIS=null;try{var gr=JSON.parse(localStorage.getItem('gu-ris')||'null');if(gr&&gr.d)window.GU_RIS=gr.d;}catch(e){}</script>
 <script>try{var t=localStorage.getItem('gx-tema');if(t&&t!=='blu')document.documentElement.dataset.tema=t;if(/[?&]intro/.test(location.search)||(!sessionStorage.getItem('gx-intro')&&!/access_token|error_description/.test(location.hash)))document.documentElement.classList.add('gx-intro-on');}catch(e){}</script>
 <style>
 /* ── TEMI ── */
@@ -1203,6 +1204,45 @@ html.gx-intro-on body{overflow:hidden}
 #gx-raid .fascia small{display:block;margin-top:6px;font:800 .38em var(--f-mono);letter-spacing:.3em;color:#fff}
 html.gx-raid #principale{animation:gx-trema .12s 10}
 @keyframes gx-trema{25%{transform:translate(2px,-1px)}50%{transform:translate(-2px,1px)}75%{transform:translate(1px,2px)}}
+
+/* ── CONTENUTI RISERVATI: lucchetto per chi non ha il ruolo ── */
+.gx-lucchetto{display:flex;flex-direction:column;align-items:center;gap:4px;margin:14px 0;padding:22px 18px;border-radius:16px;border:1px dashed color-mix(in srgb,var(--oro) 45%,transparent);background:repeating-linear-gradient(135deg,rgba(242,185,56,.05) 0 12px,transparent 12px 24px),var(--pannello);text-align:center;font-size:20px}
+.gx-lucchetto b{font:900 19px var(--f-titolo);letter-spacing:.06em;text-transform:uppercase;color:var(--oro-chiaro)}
+.gx-lucchetto span{font-size:14px;color:var(--tenue)}
+#radio .gx-lucchetto{margin:6px 0}
+/* ── MODULO DI CANDIDATURA ── */
+.cf{margin-top:16px;padding:26px 28px 22px;border-radius:22px;border:1px solid var(--linea2,#26365c);background:linear-gradient(180deg,var(--pannello2),var(--pannello));box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+.cf-testa{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:18px}
+.cf-testa small{font:800 12px var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:#7cb0ff}
+.cf-testa h3{margin:6px 0 0;font:900 clamp(28px,3.6vw,40px)/1 var(--f-titolo);text-transform:uppercase}
+.cf-griglia{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px}
+.cf-griglia .largo{grid-column:1/-1}
+.cf .campo > span{font:800 11.5px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--tenue)}
+.cf-req{color:var(--rosso);font-weight:900}
+.cf input,.cf select,.cf textarea{width:100%}
+.cf-auto{color:var(--oro-chiaro)!important;background:color-mix(in srgb,var(--oro) 6%,var(--pannello))!important;cursor:not-allowed}
+.cf-nota{margin:-2px 0 10px;font-size:13px;color:var(--tenue)}
+.cf-chip{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.cf-chip label{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;border:1px solid var(--linea2,#26365c);background:var(--pannello);font:700 14.5px var(--f-testo);cursor:pointer;user-select:none;transition:border-color .15s,background .15s}
+.cf-chip input{position:absolute;opacity:0;pointer-events:none}
+.cf-chip i{width:14px;height:14px;border-radius:4px;border:1.5px solid var(--tenue)}
+.cf-chip label:has(input:checked){border-color:var(--oro);background:color-mix(in srgb,var(--oro) 12%,var(--pannello));color:var(--oro-chiaro)}
+.cf-chip label:has(input:checked) i{background:var(--oro);border-color:var(--oro);box-shadow:inset 0 0 0 2px var(--pannello)}
+.cf-chip label:has(input:focus-visible){outline:2px solid var(--blu);outline-offset:2px}
+.cf-cnt{display:block;text-align:right;margin-top:4px;font:700 11.5px var(--f-mono);font-style:normal;color:var(--tenue)}
+.cf-cnt.ok{color:var(--verde)}
+.cf-ok{display:grid;gap:10px;margin:16px 0 4px}
+.cf-piede{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:16px;padding-top:16px;border-top:1px dashed var(--linea2,#26365c);font-size:14px;color:var(--tenue)}
+.cf-invia{background:linear-gradient(180deg,#4f7dff,#2f5ee0)!important;border-color:#4f7dff!important;color:#fff!important}
+@media (max-width:640px){.cf{padding:20px 16px}.cf-griglia{grid-template-columns:1fr}.cf-testa{flex-direction:column}}
+/* ── EDITOR BANDI (Area Comando) ── */
+.bx-testa{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.bx-testa p{margin:0;color:var(--tenue)}
+.bx-griglia{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px}
+.bx-griglia .largo{grid-column:1/-1}
+.bx-form{margin-bottom:16px;border-color:var(--oro)!important}
+.bx-form input,.bx-form textarea{width:100%}
+@media (max-width:640px){.bx-griglia{grid-template-columns:1fr}}
 </style>
 </head>
 <body id="top">
@@ -1600,25 +1640,9 @@ Ha diritto a cure mediche e a un pasto. Ha compreso i suoi diritti?</pre></div>
   <article class="art" id="art-5-2" data-t="Codici di risposta">
     <h3><span class="ref">ART. 5.2</span>Car code e status code</h3>
     <h4>🚨 Car code</h4>
-    <div class="tab"><table>
-      <thead><tr><th>Codice</th><th>Significato</th><th>Lampeggianti</th><th>Sirene</th></tr></thead>
-      <tbody>
-        <tr><td class="cod">Codice 0</td><td>Emergenza massima: attacco alle istituzioni o rapimento di pubblico ufficiale</td><td>Sì</td><td>Sì</td></tr>
-        <tr><td class="cod">Codice 1</td><td>Possibile situazione di pericolo</td><td>No</td><td>No</td></tr>
-        <tr><td class="cod">Codice 2</td><td>Situazione da verificare</td><td>Sì</td><td>No</td></tr>
-        <tr><td class="cod">Codice 3</td><td>Pericolo accertato</td><td>Sì</td><td>Sì</td></tr>
-        <tr><td class="cod">Codice 4</td><td>Situazione sotto controllo</td><td>—</td><td>—</td></tr>
-      </tbody>
-    </table></div>
+    <div class="gx-ris" data-k="tab52a"></div>
     <h4>📡 Status code</h4>
-    <div class="tab"><table>
-      <thead><tr><th>Status</th><th>Significato</th></tr></thead>
-      <tbody>
-        <tr><td class="cod">Status 1</td><td>Pattuglia operativa e disponibile</td></tr>
-        <tr><td class="cod">Status 2</td><td>Pattuglia impegnata in un'operazione (specificare la motivazione)</td></tr>
-        <tr><td class="cod">Status 3</td><td>Pattuglia in rifornimento di cibo o carburante</td></tr>
-      </tbody>
-    </table></div>
+    <div class="gx-ris" data-k="tab52b"></div>
   </article>
 
   <article class="art" id="art-5-3" data-t="Regole del canale">
@@ -1704,68 +1728,24 @@ Ha diritto a cure mediche e a un pasto. Ha compreso i suoi diritti?</pre></div>
   <article class="art" id="art-7-1" data-t="Rapporto d'arresto">
     <h3><span class="ref">ART. 7.1</span>Rapporto d'arresto</h3>
     <p>Si compila con <kbd>/rapporto</kbd> oppure si incolla questo modulo nel canale dei rapporti. Un rapporto per ogni azione, anche con più arrestati.</p>
-    <div class="modulo"><div class="mh"><b>Modulo · rapporto d'arresto</b><button class="copia" type="button">Copia modulo</button></div><pre>RAPPORTO D'ARRESTO · GANG UNIT
-Data e ora:
-Luogo:
-Agente redattore (matricola):
-Agenti coinvolti:
-Arrestato/i (nome · documento):
-Gang di appartenenza (se nota):
-Reati contestati (art.):
-Dinamica dei fatti:
-Uso della forza (livello e motivo):
-Oggetti sequestrati:
-Armi sequestrate (matricola):
-Diritti Miranda letti: SÌ / NO
-Pena e multa proposte:</pre></div>
+    <div class="gx-ris" data-k="mod71"></div>
     <div class="box obbligo"><b class="e">OBBLIGO</b><p>Ogni arma sequestrata va registrata con la sua matricola. Se la matricola è abrasa, si scrive «ABRASA».</p></div>
   </article>
 
   <article class="art" id="art-7-2" data-t="Rapporto d'operazione">
     <h3><span class="ref">ART. 7.2</span>Rapporto d'operazione</h3>
-    <div class="modulo"><div class="mh"><b>Modulo · rapporto d'operazione</b><button class="copia" type="button">Copia modulo</button></div><pre>RAPPORTO D'OPERAZIONE · GANG UNIT
-Nome operazione:
-Autorizzata da (grado · nome):
-Data e ora:
-Obiettivo (covo / laboratorio / magazzino):
-Gang coinvolta e classe:
-Squadra (matricole e ruoli):
-Esito: RIUSCITA / PARZIALE / FALLITA
-Arresti:
-Sequestri (droga, armi, denaro):
-Feriti tra agenti e civili:
-Note per l'intelligence:</pre></div>
+    <div class="gx-ris" data-k="mod72"></div>
   </article>
 
   <article class="art" id="art-7-3" data-t="Scheda gang">
     <h3><span class="ref">ART. 7.3</span>Scheda gang</h3>
-    <div class="modulo"><div class="mh"><b>Modulo · scheda gang</b><button class="copia" type="button">Copia modulo</button></div><pre>SCHEDA GANG · RISERVATO GU
-Nome della gang:
-Classe: A / B / C
-Colori e segni distintivi:
-Territorio:
-Capo / capi conosciuti:
-Membri conosciuti:
-Veicoli abituali (modello · targa):
-Attività principali:
-Alleanze e rivalità:
-Ultimo aggiornamento (data · matricola):</pre></div>
+    <div class="gx-ris" data-k="mod73"></div>
   </article>
 
   <article class="art" id="art-7-4" data-t="Rapporto recluta">
     <h3><span class="ref">ART. 7.4</span>Rapporto recluta</h3>
     <p>Il Supervisore che ha affiancato una Recluta compila la valutazione a fine turno con <kbd>/valutazione</kbd>. Ogni voce va da 1 a 10.</p>
-    <div class="modulo"><div class="mh"><b>Modulo · rapporto recluta</b><button class="copia" type="button">Copia modulo</button></div><pre>RAPPORTO RECLUTA · GANG UNIT
-Recluta (nome · matricola):
-Supervisore:
-Data del turno:
-Conoscenza del regolamento: /10
-Comunicazioni radio: /10
-Guida e inseguimenti: /10
-Gestione dei soggetti: /10
-Comportamento: /10
-Esito: POSITIVO / NEGATIVO
-Note:</pre></div>
+    <div class="gx-ris" data-k="mod74"></div>
   </article>
 </section>
 
@@ -1873,8 +1853,8 @@ Note:</pre></div>
 </section>
 <section class="vista" id="v-comando" data-vista="comando" aria-label="Area Comando" hidden>
   <div class="wrap">
-    <div class="pagina-testa"><div><small>Solo Alto Comando</small><h1>Area <span>Comando</span></h1><p>Le candidature arrivate dal sito e gli esiti degli esami. Quando accetti o rifiuti una candidatura, il bot manda subito il messaggio in DM al candidato.</p></div></div>
-    <div class="cmd-barra"><div class="moduli-sel" id="cmd-schede"><button type="button" data-cs="candidature" aria-pressed="true">📨 Candidature</button><button type="button" data-cs="esiti" aria-pressed="false">🎓 Esiti esami</button></div><button class="btn piccolo" type="button" id="cmd-agg">↻ Aggiorna</button></div>
+    <div class="pagina-testa"><div><small>Solo Alto Comando</small><h1>Area <span>Comando</span></h1><p>Candidature, esiti degli esami e gestione dei bandi. Quando accetti o rifiuti una candidatura, il bot manda subito il messaggio in DM al candidato.</p></div></div>
+    <div class="cmd-barra"><div class="moduli-sel" id="cmd-schede"><button type="button" data-cs="candidature" aria-pressed="true">📨 Candidature</button><button type="button" data-cs="esiti" aria-pressed="false">🎓 Esiti esami</button><button type="button" data-cs="bandi" aria-pressed="false">📢 Bandi</button></div><button class="btn piccolo" type="button" id="cmd-agg">↻ Aggiorna</button></div>
     <div class="radio-ctl" id="cmd-filtri"><button class="filtro2" type="button" data-fc="in_attesa" aria-pressed="true">In attesa <b>0</b></button><button class="filtro2" type="button" data-fc="accettata" aria-pressed="false">Accettate <b>0</b></button><button class="filtro2" type="button" data-fc="rifiutata" aria-pressed="false">Rifiutate <b>0</b></button><button class="filtro2" type="button" data-fc="tutte" aria-pressed="false">Tutte <b>0</b></button></div>
     <div class="cmd-lista" id="cmd-lista"></div>
   </div>
@@ -1890,6 +1870,7 @@ Note:</pre></div>
 </footer>
 <a class="su" href="#home" aria-label="Torna in alto">↑</a>
 
+<script>(function(){var R=window.GU_RIS;document.querySelectorAll('.gx-ris').forEach(function(el){var h=R&&R.html&&R.html[el.dataset.k];if(h){el.outerHTML=h;}else{el.innerHTML='<div class="gx-lucchetto">\uD83D\uDD12 <b>Riservato agli agenti Gang Unit</b><span>Accedi con Discord con il ruolo Gang Unit per vedere questa parte.</span></div>';}});})();</script>
 <script>
 (() => {
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -1925,23 +1906,10 @@ Note:</pre></div>
   $('#piramide').innerHTML = FASCE.map(([n, d, g]) => `<div class="fascia-g"><h4>${n}<span>${d}</span></h4><div class="gradi">${g.map(([nome, sig, f]) => `<div class="grado"><svg viewBox="0 0 54 54" aria-hidden="true">${defs}${INS[nome]}</svg><div><b>${nome}</b><code>${sig}</code><p>${f}</p></div></div>`).join('')}</div></div>`).join('');
 
   // ═════ CODICI RADIO ═════
-  const CODICI = [
-    ['10-0', 'Crash', 'intervento'], ['10-2', 'Standby / in attesa', 'stato'], ['10-3', 'Silenzio radio', 'stato'], ['10-4', 'Ricevuto', 'stato'], ['10-5', 'Ripetere', 'stato'],
-    ['10-6', 'Agente occupato', 'stato'], ['10-7', 'Fuori servizio', 'stato'], ['10-8', 'Entrata in servizio', 'stato'], ['10-10', 'Shotfire · spari sugli operatori', 'emergenza'],
-    ['10-20', 'Posizione pattuglia', 'stato'], ['10-22', 'Annullamento intervento', 'stato'], ['10-25', 'Soggetto a terra', 'intervento'],
-    ['10-27', 'Richiesta supporto per trasporto sospettato in custodia', 'intervento'], ['10-28', 'Sospettato in custodia', 'intervento'], ['10-30', 'Furto di veicolo', 'intervento'],
-    ['10-35', 'Furto in abitazione', 'intervento'], ['10-36', 'Spaccio', 'intervento'], ['10-44', 'Rientro in centrale', 'stato'], ['10-50', 'Pattugliamento cittadino', 'stato'],
-    ['10-55', 'Fermo stradale', 'intervento'], ['10-59', 'Controllo attività', 'intervento'], ['10-60', 'Pattuglia di supporto', 'intervento'], ['10-71', 'Briefing dipartimentale', 'stato'],
-    ['10-75', 'Richiesta unità medica', 'emergenza'], ['10-80', 'Inseguimento in corso', 'emergenza'], ['10-99', 'Rapina a mano armata', 'emergenza'], ['10-100', 'Agente a terra', 'emergenza'],
-    ['653M', 'Il soggetto ha utilizzato un dispositivo elettronico', 'intervento'],
-    ['Codice 0', 'Emergenza massima: attacco alle istituzioni o rapimento di pubblico ufficiale', 'car'], ['Codice 1', 'Possibile pericolo: sirene e lampeggianti spenti', 'car'],
-    ['Codice 2', 'Situazione da verificare: solo lampeggianti attivi', 'car'], ['Codice 3', 'Pericolo accertato: sirene e lampeggianti attivi', 'car'], ['Codice 4', 'Situazione sotto controllo', 'car'],
-    ['Status 1', 'Pattuglia operativa e disponibile', 'status'], ['Status 2', 'Pattuglia impegnata in un\'operazione (specificare il motivo)', 'status'], ['Status 3', 'Pattuglia in rifornimento di cibo o carburante', 'status'],
-    ['G-1', 'Avvistamento di membri di una gang nota', 'gang'], ['G-2', 'Raduno di gang armate', 'gang'], ['G-3', 'Scontro tra gang in corso', 'gang'],
-    ['G-4', 'Covo o laboratorio individuato', 'gang'], ['G-5', 'Operazione GU in corso, unità non GU fuori dall\'area', 'gang'], ['G-6', 'Informatore sul posto, non intervenire', 'gang'],
-  ];
+  const CODICI = (window.GU_RIS && GU_RIS.codici) || [];
   const NOMI_T = { stato: 'Ten code · stato', intervento: 'Ten code · intervento', emergenza: 'Emergenza', car: 'Car code', status: 'Status code', gang: 'Gang Unit' };
-  $('#radio tbody').innerHTML = CODICI.map(([c, s, t]) => `<tr data-t="${t}"><td class="cod">${c}</td><td>${s}</td><td><span class="pill ${t}">${NOMI_T[t]}</span></td></tr>`).join('');
+  $('#radio tbody').innerHTML = CODICI.length ? '' : '<tr><td colspan="3"><div class="gx-lucchetto">🔒 <b>Riservato agli agenti Gang Unit</b><span>Accedi con Discord con il ruolo Gang Unit per vedere i codici radio.</span></div></td></tr>';
+  if (CODICI.length) $('#radio tbody').innerHTML = CODICI.map(([c, s, t]) => `<tr data-t="${t}"><td class="cod">${c}</td><td>${s}</td><td><span class="pill ${t}">${NOMI_T[t]}</span></td></tr>`).join('');
   let filtro = 'tutti';
   function radio() {
     const v = ($('#rq')?.value || '').trim().toLowerCase();
@@ -2224,6 +2192,8 @@ const GU = {
         <div class="b-az"><button class="btn p cmd-ok" type="button" data-esito="accettata">✅ Accetta</button><button class="btn cmd-ko" type="button" data-esito="rifiutata">❌ Rifiuta</button></div>`
         : `<p class="cmd-esito">${c.stato === 'accettata' ? 'Accettata' : 'Rifiutata'} da <b>${esc(c.deciso_da || '—')}</b>${c.deciso_il ? ` il ${dataOra(c.deciso_il)}` : ''} · DM: ${c.dm_inviato ? (c.dm_esito === 'non_consegnato' ? '⚠️ non consegnato (DM chiusi)' : '✓ inviato dal bot') : '⏳ in invio dal bot…'}${c.nota ? `<br>💬 ${esc(c.nota)}` : ''}</p>`}
       </article>`).join('') : '<div class="cmd-vuoto">Nessuna candidatura in questa lista.</div>';
+    } else if (schedaC === 'bandi') {
+      await caricaBandiCmd(box);
     } else {
       const { data, error } = await sb.from('esiti').select('*').order('creato', { ascending: false }).limit(200);
       if (error) { box.innerHTML = `<div class="cmd-vuoto">Errore: ${esc(error.message)}</div>`; return; }
@@ -2279,7 +2249,7 @@ const GU = {
   $('.schede').addEventListener('click', e => { const b = e.target.closest('[data-s]'); if (b) location.hash = 'strumenti-' + b.dataset.s; });
 
   // ── codici radio (presi dalla tabella del regolamento, art. 5.1) ──
-  const CODICI = $$('#radio tbody tr').map(tr => [tr.children[0].textContent.trim(), tr.children[1].textContent.trim(), tr.dataset.t]);
+  const CODICI = $$('#radio tbody tr[data-t]').map(tr => [tr.children[0].textContent.trim(), tr.children[1].textContent.trim(), tr.dataset.t]);
   const NOMI_T = { stato: 'Ten code · stato', intervento: 'Ten code · intervento', emergenza: 'Emergenza', car: 'Car code', status: 'Status code', gang: 'Gang Unit' };
   $('#s-radio tbody').innerHTML = CODICI.map(([c, s, t]) => `<tr data-t="${t}"><td class="cod">${esc(c)}</td><td>${esc(s)}</td><td><span class="pill ${t}">${NOMI_T[t]}</span></td></tr>`).join('');
   let filtroS = 'tutti';
@@ -2304,17 +2274,7 @@ const GU = {
   nuovoMazzo();
 
   // ── prontuario (i passi vengono dagli articoli del regolamento) ──
-  const PRONTUARIO = [
-    ['Scontro tra gang · G-3', '#ff4d5e', 'art-4-7', ['Fermati a distanza: la prima unità non entra', 'Comunica in radio soggetti, armi e vie di fuga', 'La centrale porta la minaccia almeno a Giallo', 'Entra solo con 4 agenti e un responsabile', 'Metti in sicurezza l\'area e chiama l\'EMS', 'Ferma tutti i presenti armati', 'Registra armi e bossoli con /arma sequestra']],
-    ['Arresto', '#3d7bff', 'art-4-3', ['Metti in sicurezza il soggetto e ammanettalo', 'Comunica arresto e motivo', 'Leggi i diritti Miranda (fino a tre volte)', 'Prima perquisizione sul posto', 'Trasporto in centrale e seconda perquisizione', 'Rapporto d\'arresto entro fine turno']],
-    ['Fermo', '#7cb0ff', 'art-4-2', ['Comunica il motivo del fermo', 'Chiedi il documento', 'Accetta la perquisizione: trasporto senza manette', 'Rifiuta: trasporto ammanettato in centrale', 'Il fermato non va mai in cella', 'Finiti gli accertamenti: rilascio o arresto']],
-    ['Traffic stop · 10-55', '#ffc94a', 'art-4-5', ['Comunica targa, modello e posizione', 'Ferma il veicolo in un punto sicuro, volante sfalsata', 'Avvicinati dal lato guida, collega in copertura', 'Chiedi documenti e motivo del viaggio', 'Controlla il veicolo solo con consenso o fondato sospetto']],
-    ['Felony stop', '#ff9f43', 'art-4-5', ['Usalo con veicoli rubati o soggetti armati', 'Armi puntate da dietro le portiere', 'Ordini da un solo agente', 'Fai uscire i soggetti uno alla volta', 'Mani alzate, camminando all\'indietro']],
-    ['Inseguimento · 10-80', '#a78bfa', 'art-4-6', ['Massimo 3 unità più l\'aereo, le altre sui percorsi', 'Chi guida comunica direzione, strada e velocità', 'Tre ALT chiari prima di ogni manovra', 'PIT o box solo sotto i 150 km/h', 'Fuoco alle ruote solo con ok del responsabile']],
-    ['Raid e irruzione', '#ff6b6b', 'art-4-8', ['Autorizzazione del Capitano o mandato della Procura', 'Briefing: obiettivo, ingressi, ruoli, ritirata', 'Squadra minima 4 agenti più responsabile, niente Reclute', 'Debriefing al rientro', 'Rapporto d\'operazione entro 24 ore']],
-    ['Rapina con ostaggi', '#ff8fa0', 'art-4-9', ['La vita dell\'ostaggio viene prima di tutto', 'Tratta un solo agente', 'Chiedi di vedere l\'ostaggio prima di concedere', 'Fuoco solo se mettono in pericolo ostaggi o agenti']],
-    ['Richiesta di supporto', '#35d07f', 'art-5-3', ['Identificati con la matricola', 'DOVE: posizione precisa', 'COSA sta succedendo', 'DI COSA hai bisogno', 'Conferma gli ordini con 10-4']],
-  ];
+  const PRONTUARIO = (window.GU_RIS && GU_RIS.prontuario) || [];
   $('#prontuario').innerHTML = PRONTUARIO.map(([t, c, a, p]) => `<article class="pron" style="--c:${c}"><div class="pron-t"><h3>${esc(t)}</h3><span class="pron-n">0/${p.length}</span></div><ol>${p.map(x => `<li><label><input type="checkbox"><span>${esc(x)}</span></label></li>`).join('')}</ol><div class="pron-p"><a href="#${a}">Leggi l'articolo →</a><button type="button" class="azzera">Azzera</button></div></article>`).join('');
   const contaP = c => { const tot = $$('input', c).length, n = $$('input:checked', c).length; $('.pron-n', c).textContent = `${n}/${tot}`; c.classList.toggle('completa', n === tot); return n === tot; };
   $('#prontuario').addEventListener('change', e => { const c = e.target.closest('.pron'); if (c && contaP(c)) toast(`«${$('h3', c).textContent}» completato ✓`); });
@@ -2345,25 +2305,13 @@ const GU = {
   if (MODULI.length) renderModulo(0);
 
   // ── carriera (gradi dalla piramide dell'art. 2.1) ──
-  const PASSI = { 'Recluta': ['1 settimana', 'Esame d\'accademia superato e almeno 3 valutazioni positive'], 'Agente I': ['2 settimane', '15 ore di servizio, nessun richiamo attivo'], 'Agente II': ['3 settimane', '30 ore di servizio e almeno un raid'], 'Agente III': ['4 settimane', 'Proposta di un Ufficiale e colloquio con l\'Alto Comando'] };
+  const PASSI = (window.GU_RIS && GU_RIS.passi) || {};
   const gradi = $$('#piramide .fascia-g').flatMap(f => $$('.grado', f).map(g => ({ nome: $('b', g).textContent, sig: $('code', g).textContent, f: $('p', g).textContent, svg: $('svg', g).outerHTML, fascia: f.querySelector('h4').childNodes[0].textContent }))).reverse();
   $('#carriera').innerHTML = gradi.map((g, i) => { const pros = gradi[i + 1], req = PASSI[g.nome] || (pros ? ['A discrezione', 'Decisione dell\'Alto Comando'] : null);
     return `<li>${g.svg}<div><h4>${esc(g.nome)}<code>${esc(g.sig)}</code><span>${esc(g.fascia)}</span></h4><p>${esc(g.f)}</p>${req ? `<div class="req"><b>Per diventare ${esc(pros.nome)}</b><span>⏱ ${req[0]}</span><span>· ${req[1]}</span></div>` : '<div class="req"><b>Vertice della Gang Unit</b></div>'}</div></li>`; }).join('');
 
   // ── domande frequenti ──
-  const FAQ = [
-    ['Come si entra nella Gang Unit?', 'Rispondendo a un <a href="#bandi">bando</a> aperto con la candidatura online. Poi ci sono il colloquio e il periodo da Recluta, che si chiude con l\'esame d\'accademia (<a href="#art-2-4">art. 2.4</a>).'],
-    ['Posso rifare l\'esame?', 'Sì: ogni tentativo pesca domande diverse e mescola le risposte. Il miglior risultato resta salvato.'],
-    ['Ho dimenticato di timbrare: cosa succede?', 'È una violazione lieve (<a href="#art-6-1">art. 6.1</a>) e le ore di quel turno non contano: un turno non timbrato non esiste (<a href="#art-2-4">art. 2.4</a>).'],
-    ['Vado via qualche giorno.', 'Chiedi prima le ferie con <kbd>/ferie</kbd> o <kbd>/assenza</kbd>: chi è in ferie approvate non viene contato per l\'inattività (<a href="#art-6-4">art. 6.4</a>).'],
-    ['Posso avere un altro personaggio in una gang?', 'No: comporta l\'espulsione immediata (<a href="#art-1-4">art. 1.4</a>).'],
-    ['Un superiore mi dà un ordine illegale.', 'Non lo esegui: lo rifiuti con calma e lo segnali all\'Alto Comando (<a href="#art-2-2">art. 2.2</a>).'],
-    ['Come segnalo un superiore?', 'Con un ticket <b>Affari Interni</b>: è l\'unico caso in cui si salta la catena di comando (<a href="#art-2-2">art. 2.2</a>).'],
-    ['Chi comanda su una scena?', 'Il grado più alto presente o chi nomina la centrale (<a href="#art-2-2">art. 2.2</a>). Con più reparti il responsabile resta uno solo (<a href="#art-5-4">art. 5.4</a>).'],
-    ['Dove trovo i codici radio in servizio?', 'In <a href="#strumenti-radio">Strumenti → Codici radio</a> oppure su Discord con <kbd>/codici-radio</kbd>.'],
-    ['Come scrivo un rapporto in fretta?', 'In <a href="#strumenti-moduli">Strumenti → Moduli</a>: compili i campi e premi «Copia per Discord».'],
-    ['I miei progressi restano salvati?', 'Sì, nel browser di questo dispositivo. Se cambi telefono o PC ripartono da zero.'],
-  ];
+  const FAQ = (window.GU_RIS && GU_RIS.faq) || [];
   $('#faq').innerHTML = FAQ.map(([d, r]) => `<details><summary>${esc(d)}</summary><div class="r"><p>${r}</p></div></details>`).join('');
 
   /* ═════════════ BANDI ═════════════ */
@@ -2393,7 +2341,55 @@ const GU = {
   renderBandi();
   setInterval(() => { $$('[data-cd]').forEach(el => { const ms = +new Date(el.dataset.cd) - Date.now(); if (ms <= 0) renderBandi(); else el.textContent = manca(ms); }); }, 1000);
   const annuncio = b => [`📢 **BANDO ${statoB(b) === 'aperto' ? 'APERTO' : statoB(b) === 'arrivo' ? 'IN ARRIVO' : 'CHIUSO'} · ${b.titolo.toUpperCase()}**`, `${b.numero} · Posti: **${b.posti}** · Aperto a: ${b.apertoA}`, `Candidature dal **${dataB(b.apertura)}** al **${dataB(b.chiusura)}**`, '', b.descrizione, '', '**Requisiti**', ...b.requisiti.map(r => `• ${r}`), '', `Candidati dal sito: ${GU.sito}#bando-${b.id}`].join('\n');
-  const DOM_CAND = [['nome', 'Nome e cognome del personaggio', 'breve'], ['eta', 'Età (OOC)', 'breve'], ['ore', 'Ore a settimana che puoi garantire', 'breve'], ['esperienze', 'Esperienze in altre fazioni o server', 'lungo'], ['motivo', 'Perché vuoi entrare nella Gang Unit?', 'lungo']];
+  // modulo di candidatura (i campi diventano le voci che l'Alto Comando legge nell'Area Comando)
+  const ORE_OPZ = ['Meno di 5 ore', '5–10 ore', '10–15 ore', '15–20 ore', 'Più di 20 ore'];
+  const FASCE_OPZ = ['Mattina', 'Pomeriggio', 'Sera', 'Notte', 'Weekend'];
+  const CASO_STD = 'Arrivi per primo su uno scontro tra gang con 5 soggetti armati e un ferito a terra. Cosa fai, passo per passo?';
+  const DOM_CAND = [['nome', 'Nome e cognome del personaggio'], ['documento', 'Documento del personaggio'], ['lavoro', 'Lavoro attuale in città'], ['discord', 'Nome Discord'], ['discord_id', 'ID Discord'], ['eta', 'Età reale'], ['ore', 'Ore di servizio a settimana'], ['fasce', 'Fasce orarie'], ['esperienze', 'Esperienze precedenti'], ['motivo', 'Perché vuoi entrare nella Gang Unit?'], ['caso', 'Caso pratico']];
+  function formCandidatura(b) {
+    const caso = b.caso || CASO_STD, nd = utente?.utente ? '@' + utente.utente : (utente?.nome || '');
+    const req = '<b class="cf-req">*</b>';
+    return `<form class="cand-form cf" data-b="${esc(b.id)}" novalidate>
+      <div class="cf-testa"><div><small>${esc(b.numero)} · Candidatura online</small><h3>${esc(b.titolo)}</h3></div><button class="btn piccolo" type="button" data-chiudi>← Torna al bando</button></div>
+      <div class="cf-griglia">
+        <label class="campo"><span>Nome e cognome del personaggio ${req}</span><input name="nome" required maxlength="60" placeholder="es. Marco Rossi"></label>
+        <label class="campo"><span>Documento del personaggio</span><input name="documento" maxlength="40" placeholder="es. numero del documento in città (facoltativo)"></label>
+        <label class="campo"><span>Lavoro attuale in città</span><input name="lavoro" maxlength="60" placeholder="es. meccanico, tassista, disoccupato"></label>
+        <label class="campo"><span>Nome Discord ${req}</span><input name="discord" value="${esc(nd)}" readonly class="cf-auto"></label>
+        <label class="campo largo"><span>ID Discord (solo numeri) ${req}</span><input name="discord_id" value="${esc(utente?.id || '')}" readonly class="cf-auto"></label>
+        <p class="cf-nota largo">✓ Preso in automatico dal tuo accesso con Discord: serve al bot per mandarti l'esito in DM.</p>
+        <label class="campo"><span>Età reale ${req}</span><input name="eta" type="number" min="10" max="99" required placeholder="es. 19"></label>
+        <label class="campo"><span>Ore di servizio a settimana ${req}</span><select name="ore" required><option value="">Scegli…</option>${ORE_OPZ.map(o => `<option>${o}</option>`).join('')}</select></label>
+        <div class="campo largo"><span>In che fasce orarie sei disponibile? ${req}</span><div class="cf-chip">${FASCE_OPZ.map(o => `<label><input type="checkbox" name="fasce" value="${o}"><i></i>${o}</label>`).join('')}</div></div>
+        <label class="campo largo"><span>Esperienze precedenti (reparti, ruoli, server)</span><textarea name="esperienze" rows="3" maxlength="1500" placeholder="Facoltativo"></textarea></label>
+        <label class="campo largo"><span>Perché vuoi entrare nella Gang Unit? ${req}</span><textarea name="motivo" rows="4" maxlength="2500" data-min="150" required></textarea><em class="cf-cnt" data-per="motivo">0 / almeno 150 caratteri</em></label>
+        <label class="campo largo"><span>Caso pratico: ${esc(caso)} ${req}</span><textarea name="caso" rows="4" maxlength="2500" data-min="100" required></textarea><em class="cf-cnt" data-per="caso">0 / almeno 100 caratteri</em></label>
+        <p class="cf-nota largo">Rispondi con parole tue: la commissione valuta come ragioni, non se citi gli articoli a memoria.</p>
+      </div>
+      <div class="cf-ok">
+        <label class="spunta"><input type="checkbox" name="ok1" required> Ho letto e accetto il <a href="#regolamento">Regolamento della Gang Unit</a> (GU-NOW-001).</label>
+        <label class="spunta"><input type="checkbox" name="ok2" required> Nessun mio personaggio fa parte di gang o organizzazioni criminali.</label>
+        <label class="spunta"><input type="checkbox" name="ok3" required> Le informazioni che ho scritto sono vere. So che quelle false portano all'esclusione.</label>
+      </div>
+      <div class="cf-piede"><span>La candidatura arriva subito all'Alto Comando.</span><button class="btn p cf-invia" type="submit">Invia candidatura →</button></div>
+      <div class="cand-esito"></div></form>`;
+  }
+  document.addEventListener('input', e => {
+    const t = e.target.closest?.('.cf textarea[data-min]'); if (!t) return;
+    const n = t.value.trim().length, m = +t.dataset.min, c = t.closest('.campo').querySelector('.cf-cnt');
+    c.textContent = `${n} / almeno ${m} caratteri`; c.classList.toggle('ok', n >= m);
+  });
+  function controllaCand(f) {
+    const d = new FormData(f), err = [];
+    if (!String(d.get('nome') || '').trim()) err.push('il nome del personaggio');
+    const eta = +d.get('eta'); if (!eta || eta < 10 || eta > 99) err.push('l\'età');
+    if (!d.get('ore')) err.push('le ore a settimana');
+    if (!d.getAll('fasce').length) err.push('almeno una fascia oraria');
+    if (String(d.get('motivo') || '').trim().length < 150) err.push('la motivazione (almeno 150 caratteri)');
+    if (String(d.get('caso') || '').trim().length < 100) err.push('il caso pratico (almeno 100 caratteri)');
+    if (!d.get('ok1') || !d.get('ok2') || !d.get('ok3')) err.push('le tre conferme in fondo');
+    return err;
+  }
   $('#bandi-lista').addEventListener('click', async e => {
     const an = e.target.closest('[data-annuncio]'); if (an) return copia(annuncio(GU.bandi.find(b => b.id === an.dataset.annuncio)));
     const cb = e.target.closest('[data-cand]');
@@ -2401,18 +2397,20 @@ const GU = {
       if (!utente) return accedi();
       const b = GU.bandi.find(x => x.id === cb.dataset.cand), box = $('#form-' + b.id);
       box.hidden = !box.hidden; if (box.hidden) return;
-      box.innerHTML = `<form class="cand-form" data-b="${esc(b.id)}"><h3>Candidatura · ${esc(b.titolo)}</h3><div class="cand-griglia">${DOM_CAND.map(([id, l, t]) => `<label class="campo ${t === 'lungo' ? 'largo' : ''}"><span>${esc(l)}</span>${t === 'lungo' ? `<textarea name="${id}" rows="4" required maxlength="900"></textarea>` : `<input name="${id}" required maxlength="80">`}</label>`).join('')}</div>
-        <label class="spunta"><input type="checkbox" name="ok" required> Ho letto il <a href="#regolamento">regolamento</a> e confermo di non far parte di gang o organizzazioni criminali.</label>
-        <div class="b-az"><button class="btn p" type="submit">Invia candidatura</button><button class="btn" type="button" data-chiudi>Annulla</button></div><div class="cand-esito"></div></form>`;
-      box.querySelector('input,textarea')?.focus(); return;
+      box.innerHTML = formCandidatura(b);
+      box.scrollIntoView({ behavior: 'smooth', block: 'start' }); box.querySelector('input,textarea')?.focus(); return;
     }
-    if (e.target.closest('[data-chiudi]')) { const box = e.target.closest('.b-form'); box.hidden = true; }
+    if (e.target.closest('[data-chiudi]')) { const box = e.target.closest('.b-form'); box.hidden = true; box.closest('.bando')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   });
   $('#bandi-lista').addEventListener('submit', async e => {
     e.preventDefault(); const f = e.target, b = GU.bandi.find(x => x.id === f.dataset.b), d = Object.fromEntries(new FormData(f));
     if (!sb || !utente) return accedi();
+    const errori = controllaCand(f); if (errori.length) { $('.cand-esito', f).innerHTML = `<p class="cand-err">Manca ${esc(errori.join(', '))}.</p>`; return; }
     const btn = f.querySelector('[type=submit]'); btn.disabled = true; btn.textContent = 'Invio…';
-    const dati = Object.fromEntries(DOM_CAND.map(([id, l]) => [l, String(d[id] || '').trim()]));
+    const fd = new FormData(f), v = k => String(fd.get(k) || '').trim();
+    const dati = { 'Nome e cognome del personaggio': v('nome'), 'Documento del personaggio': v('documento') || '—', 'Lavoro attuale in città': v('lavoro') || '—', 'Nome Discord': v('discord'), 'ID Discord': utente.id,
+      'Età reale': v('eta'), 'Ore di servizio a settimana': v('ore'), 'Fasce orarie': fd.getAll('fasce').join(', '), 'Esperienze precedenti': v('esperienze') || '—',
+      'Perché vuoi entrare nella Gang Unit?': v('motivo'), ['Caso pratico: ' + (b.caso || CASO_STD)]: v('caso') };
     const { error } = await sb.from('candidature').insert({ bando_id: b.id, bando_titolo: b.titolo, discord_id: utente.id, discord_nome: utente.utente || utente.nome, dati });
     if (error) { btn.disabled = false; btn.textContent = 'Invia candidatura'; $('.cand-esito', f).innerHTML = `<p class="cand-err">${/duplicate|unique/i.test(error.message) ? 'Hai già una candidatura in valutazione per questo bando.' : 'Invio non riuscito: ' + esc(error.message)}</p>`; return; }
     f.closest('.b-form').innerHTML = '<div class="cand-ok">✓ Candidatura inviata all\'Alto Comando. Riceverai la risposta in DM su Discord dal bot della Gang Unit.</div>';
@@ -2421,31 +2419,7 @@ const GU = {
   const _ab = applicaAccesso; applicaAccesso = function () { _ab(); mieCandidature().then(renderBandi); };
 
   /* ═════════════ ESAMI ═════════════ */
-  const BANCA = [
-    ['In una rapina con ostaggi, chi conduce la trattativa?', ['Un solo agente', 'Il grado più alto presente', 'Tutti gli agenti a turno', 'La centrale via radio'], 'art-4-9'],
-    ['Chi può autorizzare un raid in un covo?', ['Il Capitano o la Procura con un mandato', 'Un Sergente II', 'Un Agente III', 'Chiunque abbia visto il covo'], 'art-4-8'],
-    ['Sotto quale velocità è ammessa la manovra PIT?', ['150 km/h', '100 km/h', '200 km/h', 'A qualsiasi velocità'], 'art-4-6'],
-    ['Con livello di minaccia ROSSO, le Reclute…', ['non entrano nei territori ostili', 'guidano le pattuglie', 'escono da sole', 'partecipano ai raid'], 'art-3-2'],
-    ['Arrivi per primo su un G-3, scontro tra gang. Cosa fai?', ['Ti fermi a distanza e comunichi soggetti, armi e vie di fuga', 'Entri subito e fermi tutti', 'Te ne vai', 'Spari in aria'], 'art-4-7'],
-    ['Quante volte ripeti al massimo i diritti Miranda?', ['Tre', 'Una', 'Cinque', 'Finché non risponde'], 'art-4-3'],
-    ['Una gang di Classe A si colpisce…', ['solo con operazioni autorizzate dal Capitano o dall\'Alto Comando', 'con controlli ordinari', 'con l\'ok di un Sergente', 'appena possibile'], 'art-3-3'],
-    ['Dopo quanti giorni senza servizio vieni segnalato all\'Alto Comando?', ['10', '3', '5', '30'], 'art-6-4'],
-    ['Un fermato rifiuta la perquisizione. Come lo trasporti?', ['Ammanettato in centrale per gli accertamenti', 'Non lo trasporti', 'Direttamente in cella', 'Senza manette sul sedile davanti'], 'art-4-2'],
-    ['Cosa significa il codice G-6?', ['Informatore sul posto, non intervenire', 'Raduno di gang armate', 'Covo individuato', 'Fine turno'], 'art-5-1'],
-    ['Cosa significa 10-99?', ['Rapina a mano armata', 'Agente a terra', 'Fine turno', 'Inseguimento in corso'], 'art-5-1'],
-    ['Cosa significa 10-100?', ['Agente a terra', 'Rapina a mano armata', 'Rientro in centrale', 'Spaccio'], 'art-5-1'],
-    ['Qual è lo Status di una pattuglia operativa e disponibile?', ['Status 1', 'Status 2', 'Status 3', 'Codice 4'], 'art-5-2'],
-    ['Pericolo accertato, sirene e lampeggianti attivi: che car code è?', ['Codice 3', 'Codice 1', 'Codice 2', 'Codice 0'], 'art-5-2'],
-    ['Cosa indica il Codice 0?', ['Attacco alle istituzioni o rapimento di pubblico ufficiale', 'Situazione sotto controllo', 'Pattuglia disponibile', 'Fine turno'], 'art-5-2'],
-    ['Qual è la squadra minima per un raid?', ['4 agenti più il responsabile', '2 agenti', '6 agenti senza responsabile', 'Un agente sotto copertura'], 'art-4-8'],
-    ['Entro quando va scritto il rapporto d\'operazione?', ['Entro 24 ore', 'Entro fine settimana', 'Non serve', 'Entro un\'ora'], 'art-4-8'],
-    ['Un superiore ti dà un ordine palesemente illegittimo. Cosa fai?', ['Lo rifiuti con calma e lo segnali all\'Alto Comando', 'Lo esegui comunque', 'Lo riferisci alla gang', 'Lasci la Gang Unit'], 'art-2-2'],
-    ['Quale livello di forza è il «non letale»?', ['Livello 4: taser e manganello', 'Livello 1: presenza', 'Livello 2: comandi verbali', 'Livello 5'], 'art-4-1'],
-    ['Quante unità al massimo seguono un 10-80?', ['3 più l\'unità aerea', '1', 'Tutte quelle disponibili', '10'], 'art-4-6'],
-    ['Cosa comporta avere un altro personaggio in una gang contrastata dalla GU?', ['L\'espulsione immediata', 'Un richiamo verbale', 'Niente, se è un altro personaggio', 'Una sospensione di un giorno'], 'art-1-4'],
-    ['In una richiesta di supporto, cosa dici sempre?', ['Dove, cosa succede e di cosa c\'è bisogno', 'Solo la matricola', 'Il nome della gang', 'Niente, basta 10-4'], 'art-5-3'],
-    ['Cosa rende una violazione più grave di una classe?', ['La recidiva', 'Il turno di notte', 'Il livello Verde', 'Essere Recluta'], 'art-6-1'],
-  ];
+  const BANCA = (window.GU_RIS && GU_RIS.banca) || [];
   const N_DOM = 10, SOGLIA = 7;
   const ME = () => LS.get('gu-candidato', { nome: '', matricola: '', discord: '' });
   function renderCandidato() {
@@ -2546,6 +2520,97 @@ const GU = {
       <div class="ac-az">${c.id ? `<a class="btn piccolo" href="https://discord.com/users/${esc(c.id)}" target="_blank" rel="noopener">Profilo Discord ↗</a><button type="button" class="btn piccolo" data-menz="${esc(c.id)}">Copia menzione</button>` : ''}</div>
     </article>`).join('');
   $('#ac-lista').addEventListener('click', e => { const b = e.target.closest('[data-menz]'); if (b) copia(`<@${b.dataset.menz}>`); });
+
+
+  /* ═════════════ BANDI DAL DATABASE + EDITOR DELL'ALTO COMANDO ═════════════ */
+  const BANDI_CFG = GU.bandi.map(b => ({ ...b }));          // i bandi scritti nel file: servono solo per la prima importazione
+  const senzaId = ({ id, _attivo, _annunciato, _agg, _da, ...resto }) => resto;
+  const daRiga = r => ({ ...r.dati, id: r.id, _attivo: r.attivo, _annunciato: r.annunciato, _agg: r.aggiornato, _da: r.modificato_da });
+  const CASO_DEF = 'Arrivi per primo su uno scontro tra gang con 5 soggetti armati e un ferito a terra. Cosa fai, passo per passo?';
+  async function leggiBandiDB() { const { data, error } = await sb.from('bandi').select('*').order('creato', { ascending: false }); return error ? null : data; }
+  async function caricaBandi() {
+    if (!sb) return;
+    let righe = await leggiBandiDB(); if (!righe) return;            // tabella non ancora creata: restano quelli del file
+    if (!righe.length && comando() && BANDI_CFG.length) {             // prima volta: l'Alto Comando importa i bandi del file
+      await sb.from('bandi').insert(BANDI_CFG.map(b => ({ id: b.id, dati: senzaId(b), attivo: true, annunciato: true, modificato_da: utente?.nome || 'Sito' })));
+      righe = await leggiBandiDB() || [];
+    }
+    GU.bandi.splice(0, GU.bandi.length, ...righe.filter(r => r.attivo).map(daRiga));
+    renderBandi(); homeBando();
+    return righe;
+  }
+
+  const aLocale = s => { if (!s) return ''; const d = new Date(s); if (isNaN(d)) return ''; const p = n => String(n).padStart(2, '0'); return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`; };
+  function cardBandoCmd(r) {
+    const b = daRiga(r), st = statoB(b);
+    return `<article class="cmd-card bx-card" data-bid="${esc(r.id)}">
+      <div class="cmd-testa"><span class="cmd-st">${r.attivo ? (st === 'aperto' ? '🟢 Aperto' : st === 'arrivo' ? '🟡 In arrivo' : '⚪ Chiuso') : '🙈 Nascosto'}</span><b>${esc(b.titolo || 'Senza titolo')}</b><span class="cmd-data">${esc(b.numero || '')}</span></div>
+      <dl class="cmd-dati"><div><dt>Posti</dt><dd>${esc(b.posti ?? '—')}</dd></div><div><dt>Aperto a</dt><dd>${esc(b.apertoA || '—')}</dd></div><div><dt>Apertura</dt><dd>${b.apertura ? dataB(b.apertura) : '—'}</dd></div><div><dt>Chiusura</dt><dd>${b.chiusura ? dataB(b.chiusura) : '—'}</dd></div><div><dt>Discord</dt><dd>${r.annunciato ? '✅ annunciato' : '⏳ il bot lo annuncia a breve'}</dd></div><div><dt>Ultima modifica</dt><dd>${esc(r.modificato_da || '—')}${r.aggiornato ? ' · ' + dataOra(r.aggiornato) : ''}</dd></div></dl>
+      <div class="b-az"><button class="btn p" type="button" data-bx="modifica">✏️ Modifica</button><button class="btn" type="button" data-bx="visibile">${r.attivo ? '🙈 Nascondi dal sito' : '👁 Mostra sul sito'}</button><button class="btn" type="button" data-bx="annuncia">📢 Annuncia di nuovo</button><button class="btn cmd-ko" type="button" data-bx="elimina">🗑 Elimina</button></div>
+    </article>`;
+  }
+  function formBandoCmd(r) {
+    const b = r ? daRiga(r) : { numero: `Bando n. ${String(GU.bandi.length + 1).padStart(2, '0')}/${new Date().getFullYear()}`, titolo: '', sotto: '', posti: 5, apertoA: 'Cittadini di Los Santos, non LSPD', apertura: aLocale(new Date()), chiusura: aLocale(new Date(Date.now() + 14 * 864e5)), descrizione: '', requisiti: [], caso: CASO_DEF };
+    const c = (n, l, v, extra = '') => `<label class="campo"><span>${l}</span><input name="${n}" value="${esc(v ?? '')}" ${extra}></label>`;
+    return `<form class="mod-form riquadro bx-form" data-bid="${esc(r?.id || '')}" autocomplete="off">
+      <h3 class="r-tit">${r ? 'Modifica bando' : 'Nuovo bando'} <small>Le modifiche si vedono subito sul sito</small></h3>
+      <div class="bx-griglia">
+        ${c('numero', 'Numero del bando', b.numero, 'maxlength="40" required')}
+        ${c('posti', 'Posti disponibili', b.posti, 'type="number" min="1" max="99" required')}
+        <label class="campo largo"><span>Titolo *</span><input name="titolo" value="${esc(b.titolo)}" maxlength="90" required placeholder="es. Reclutamento agenti Gang Unit"></label>
+        <label class="campo largo"><span>Sottotitolo</span><input name="sotto" value="${esc(b.sotto || '')}" maxlength="140" placeholder="es. Ingresso come Recluta, con percorso verso Agente I"></label>
+        ${c('apertoA', 'Aperto a', b.apertoA, 'maxlength="80"')}
+        <span></span>
+        ${c('apertura', 'Apertura candidature', aLocale(b.apertura), 'type="datetime-local" required')}
+        ${c('chiusura', 'Chiusura candidature', aLocale(b.chiusura), 'type="datetime-local" required')}
+        <label class="campo largo"><span>Descrizione</span><textarea name="descrizione" rows="4" maxlength="2000">${esc(b.descrizione || '')}</textarea></label>
+        <label class="campo largo"><span>Requisiti (uno per riga)</span><textarea name="requisiti" rows="5" maxlength="2000" placeholder="Almeno 16 anni (OOC)&#10;Microfono funzionante">${esc((b.requisiti || []).join('\n'))}</textarea></label>
+        <label class="campo largo"><span>Domanda del caso pratico (compare nel modulo di candidatura)</span><textarea name="caso" rows="2" maxlength="400">${esc(b.caso || CASO_DEF)}</textarea></label>
+      </div>
+      <label class="spunta"><input type="checkbox" name="attivo" ${!r || r.attivo ? 'checked' : ''}> Visibile sul sito</label>
+      <label class="spunta"><input type="checkbox" name="annuncia" ${r ? '' : 'checked'}> Annuncialo su Discord quando salvo (il bot lo pubblica entro 20 secondi)</label>
+      <div class="b-az"><button class="btn p" type="submit">💾 Salva bando</button><button class="btn" type="button" data-bx="annulla">Annulla</button></div>
+      <div class="cand-esito"></div>
+    </form>`;
+  }
+  let righeCmd = [];
+  async function caricaBandiCmd(box) {
+    const righe = await caricaBandi();
+    if (!righe) { box.innerHTML = '<div class="cmd-vuoto">La tabella dei bandi non è ancora nel database: esegui su Supabase lo script SQL «bandi e contenuti».</div>'; return; }
+    righeCmd = righe;
+    box.innerHTML = `<div class="bx-testa"><p>Crea, modifica o chiudi i bandi da qui: il sito si aggiorna subito e il bot li annuncia su Discord.</p><button class="btn p" type="button" data-bx="nuovo">＋ Nuovo bando</button></div><div class="bx-nuovo"></div>`
+      + (righe.length ? righe.map(cardBandoCmd).join('') : '<div class="cmd-vuoto">Nessun bando: creane uno con «Nuovo bando».</div>');
+  }
+  const boxCmd = $('#cmd-lista');
+  boxCmd.addEventListener('click', async e => {
+    const b = e.target.closest('[data-bx]'); if (!b || !comando()) return;
+    const az = b.dataset.bx, card = b.closest('[data-bid]'), id = card?.dataset.bid, r = righeCmd.find(x => x.id === id);
+    if (az === 'nuovo') { $('.bx-nuovo', boxCmd).innerHTML = formBandoCmd(null); $('.bx-nuovo input[name=titolo]', boxCmd)?.focus(); return; }
+    if (az === 'annulla') return caricaBandiCmd(boxCmd);
+    if (az === 'modifica') { card.outerHTML = formBandoCmd(r); return; }
+    const salva = async (campi, msg) => { const { error } = await sb.from('bandi').update({ ...campi, aggiornato: new Date().toISOString(), modificato_da: utente.nome }).eq('id', id); toast(error ? 'Errore: ' + error.message : msg); caricaBandiCmd(boxCmd); };
+    if (az === 'visibile') return salva({ attivo: !r.attivo }, r.attivo ? 'Bando nascosto dal sito' : 'Bando di nuovo visibile ✓');
+    if (az === 'annuncia') return salva({ annunciato: false }, 'Il bot lo annuncia su Discord entro 20 secondi ✓');
+    if (az === 'elimina') {
+      if (b.dataset.conferma !== '1') { b.dataset.conferma = '1'; b.textContent = '⚠ Clicca di nuovo per eliminare'; setTimeout(() => { if (b.isConnected) { b.dataset.conferma = ''; b.textContent = '🗑 Elimina'; } }, 4000); return; }
+      const { error } = await sb.from('bandi').delete().eq('id', id); toast(error ? 'Errore: ' + error.message : 'Bando eliminato'); caricaBandiCmd(boxCmd);
+    }
+  });
+  boxCmd.addEventListener('submit', async e => {
+    const f = e.target.closest('.bx-form'); if (!f) return; e.preventDefault(); if (!comando()) return;
+    const d = Object.fromEntries(new FormData(f)), es = $('.cand-esito', f);
+    if (new Date(d.chiusura) <= new Date(d.apertura)) { es.innerHTML = '<p class="cand-err">La chiusura deve essere dopo l\'apertura.</p>'; return; }
+    const dati = { numero: d.numero.trim(), titolo: d.titolo.trim(), sotto: d.sotto.trim(), posti: +d.posti || 1, apertoA: d.apertoA.trim(), apertura: d.apertura, chiusura: d.chiusura,
+      descrizione: d.descrizione.trim(), requisiti: d.requisiti.split('\n').map(x => x.trim()).filter(Boolean), caso: d.caso.trim() || CASO_DEF };
+    const vecchio = righeCmd.find(x => x.id === f.dataset.bid), id = vecchio?.id || ('gu-' + Date.now().toString(36));
+    const riga = { id, dati, attivo: !!d.attivo, annunciato: d.annuncia ? false : (vecchio ? vecchio.annunciato : true), aggiornato: new Date().toISOString(), modificato_da: utente.nome };
+    const btn = f.querySelector('[type=submit]'); btn.disabled = true; btn.textContent = 'Salvo…';
+    const { error } = await sb.from('bandi').upsert(riga);
+    if (error) { btn.disabled = false; btn.textContent = '💾 Salva bando'; es.innerHTML = `<p class="cand-err">Salvataggio non riuscito: ${esc(error.message)}</p>`; return; }
+    toast(d.annuncia ? 'Bando salvato ✓ · il bot lo annuncia su Discord' : 'Bando salvato ✓'); caricaBandiCmd(boxCmd);
+  });
+  caricaBandi();
+  const _ab2 = applicaAccesso; applicaAccesso = function () { _ab2(); caricaBandi(); };
 
   applicaAccesso();
   (async () => {
@@ -3218,6 +3283,30 @@ const GU = {
   let tocchi = 0, tocT = 0;
   $('.marchio')?.addEventListener('click', e => { tocchi++; clearTimeout(tocT); tocT = setTimeout(() => { tocchi = 0; }, 1200); if (tocchi >= 5) { e.preventDefault(); tocchi = 0; raid(); } });
 
+
+  /* ═════ CONTENUTI RISERVATI: arrivano dal database solo a chi ha il ruolo ═════ */
+  let risInCorso = false;
+  function ricarica(motivo) {
+    const vai = () => { try { sessionStorage.setItem('gx-intro', '1'); } catch {} location.reload(); };
+    if (H.classList.contains('gx-intro-on')) { const t = setInterval(() => { if (!H.classList.contains('gx-intro-on')) { clearInterval(t); setTimeout(vai, 900); } }, 300); }
+    else { const n = document.createElement('div'); n.className = 'gx-ios'; n.style.textAlign = 'center'; n.innerHTML = '🔒 <b>' + motivo + '</b>'; document.body.appendChild(n); setTimeout(vai, 700); }
+  }
+  async function sincronizzaRis(livello, ss) {
+    if (risInCorso || !CFG.url) return;
+    let salvato = null; try { salvato = JSON.parse(localStorage.getItem('gu-ris') || 'null'); } catch {}
+    if (!livello) { if (salvato) { try { localStorage.removeItem('gu-ris'); } catch {} ricarica('Accesso chiuso: tolgo l\'area riservata…'); } return; }
+    risInCorso = true;
+    try {
+      const h = { apikey: CFG.chiave, Authorization: `Bearer ${ss.access_token}` };
+      const r = await fetch(`${CFG.url}/rest/v1/contenuti?chiave=eq.riservato&select=aggiornato`, { headers: h }); if (!r.ok) return;
+      const riga = (await r.json())[0]; if (!riga) return;
+      if (salvato && salvato.v === riga.aggiornato && window.GU_RIS) return;
+      const r2 = await fetch(`${CFG.url}/rest/v1/contenuti?chiave=eq.riservato&select=dati,aggiornato`, { headers: h }); if (!r2.ok) return;
+      const x = (await r2.json())[0]; if (!x?.dati) return;
+      try { localStorage.setItem('gu-ris', JSON.stringify({ v: x.aggiornato, d: x.dati })); } catch { return; }
+      ricarica('Apro l\'area riservata agli agenti…');
+    } catch {} finally { risInCorso = false; }
+  }
   /* ═════ TESSERA AGENTE ═════ */
   let ultimoToken = null;
   let io2 = null;
@@ -3237,10 +3326,12 @@ const GU = {
     if (!CFG.url || !CFG.chiave) return;
     try {
       const ss = sessione(), u = ss?.user;
-      if (!u || (ss.expires_at && ss.expires_at * 1000 < Date.now())) { io2 = null; btnTes.hidden = true; return; }
+      if (!u) { io2 = null; btnTes.hidden = true; sincronizzaRis(null, null); return; }
+      if (ss.expires_at && ss.expires_at * 1000 < Date.now()) { io2 = null; btnTes.hidden = true; return; }
       const md = u.user_metadata || {}, id = md.provider_id || md.sub;
       const r = await fetch(`${CFG.url}/rest/v1/membri?select=livello,nome&discord_id=eq.${encodeURIComponent(id)}`, { headers: { apikey: CFG.chiave, Authorization: `Bearer ${ss.access_token}` } });
       const righe = r.ok ? await r.json() : [], riga = righe[0];
+      sincronizzaRis(riga ? riga.livello : null, ss);
       if (!riga) { io2 = null; btnTes.hidden = true; return; }
       const x = leggiNick(riga.nome, riga.livello), t = TUTTI.find(g => g.n === x.grado);
       io2 = { ...x, fascia: t?.f || (riga.livello === 'comando' ? 'Alto Comando' : 'Gang Unit'), avatar: md.avatar_url || '', utente: md.full_name || md.name || '', id };
