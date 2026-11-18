@@ -1,0 +1,17 @@
+{
+  "name": "Gang Unit · NOW V4",
+  "short_name": "Gang Unit",
+  "description": "Regolamento, codici radio, bandi ed esami della Gang Unit · NOW V4 Roleplay",
+  "lang": "it",
+  "start_url": "/?app=1",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#050913",
+  "theme_color": "#050913",
+  "icons": [
+    { "src": "/gu-icona-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/gu-icona-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/gu-icona-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
