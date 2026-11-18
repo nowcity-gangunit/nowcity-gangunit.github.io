@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- versione 2026-11-18 15:10 -->
 <title>Gang Unit · NOW V4</title>
 <meta name="description" content="Regolamento e manuale operativo della Gang Unit del Los Santos Police Department · NOW V4 Roleplay.">
 <meta property="og:title" content="Regolamento Gang Unit · NOW V4">
@@ -919,7 +920,7 @@ body.comando #v-comando .blocco{display:none}
 .cmd-vuoto{padding:30px;text-align:center;border:1px dashed var(--linea2);border-radius:16px;color:var(--tenue)}
 </style>
 <!-- ═════ EXTRA: intro, temi, tessera, gradi, cursore (blocco separato, non tocca il resto) ═════ -->
-<script>try{var t=localStorage.getItem('gx-tema');if(t&&t!=='blu')document.documentElement.dataset.tema=t;if(!sessionStorage.getItem('gx-intro')&&!/access_token|error_description/.test(location.hash))document.documentElement.classList.add('gx-intro-on');}catch(e){}</script>
+<script>try{var t=localStorage.getItem('gx-tema');if(t&&t!=='blu')document.documentElement.dataset.tema=t;if(/[?&]intro/.test(location.search)||(!sessionStorage.getItem('gx-intro')&&!/access_token|error_description/.test(location.hash)))document.documentElement.classList.add('gx-intro-on');}catch(e){}</script>
 <style>
 /* ── TEMI ── */
 html[data-tema="rossa"]{--notte:#0c0406;--pannello:#170a0e;--pannello2:#1f0e13;--linea:#3a1820;--linea2:#4a2029;--blu:#ff3b4f;--blu-scuro:#8f1424;--tenue:#b39aa0}
@@ -1062,14 +1063,19 @@ html.gx-intro-on body{overflow:hidden}
 .gx-ins svg{width:84px;height:84px;overflow:visible}
 .gx-grado b{display:block;font:900 22px/1 var(--f-titolo);text-transform:uppercase;letter-spacing:.02em}
 .gx-grado small{display:block;margin-top:6px;font:700 11px var(--f-mono);letter-spacing:.12em;color:var(--tenue);text-transform:uppercase}
+
+@media (prefers-reduced-motion:no-preference){
 .gx-ins .tr{stroke-dasharray:80;stroke-dashoffset:80}
+.gx-ins .st{transform-box:fill-box;transform-origin:center;opacity:0;transform:scale(.2) rotate(-90deg)}
+.gx-ins .br{opacity:0;transform:translateY(8px)}
+}
 .gx-grado.vis .tr{animation:gx-traccia .7s cubic-bezier(.3,.7,.2,1) forwards;animation-delay:calc(var(--i,0) * .12s + .1s)}
 @keyframes gx-traccia{to{stroke-dashoffset:0}}
-.gx-ins .st{transform-box:fill-box;transform-origin:center;opacity:0;transform:scale(.2) rotate(-90deg)}
+
 .gx-grado.vis .st{animation:gx-stella .6s cubic-bezier(.3,1.6,.5,1) forwards,gx-brilla 2.6s ease-in-out infinite;animation-delay:calc(var(--i,0) * .15s + .1s),calc(var(--i,0) * .4s + 1s)}
 @keyframes gx-stella{to{opacity:1;transform:none}}
 @keyframes gx-brilla{50%{filter:brightness(1.6) drop-shadow(0 0 6px #ffd76a)}}
-.gx-ins .br{opacity:0;transform:translateY(8px)}
+
 .gx-grado.vis .br{animation:gx-barra .5s ease-out forwards;animation-delay:calc(var(--i,0) * .15s + .1s)}
 @keyframes gx-barra{to{opacity:1;transform:none}}
 .gx-grado.mio{border-color:var(--oro);box-shadow:0 0 0 1px var(--oro),0 18px 40px -18px rgba(242,185,56,.6)}
@@ -1107,7 +1113,6 @@ html.gx-intro-on body{overflow:hidden}
 .gx-card .chip:before{content:"";position:absolute;inset:7px 12px;border:1px solid rgba(0,0,0,.35);border-radius:3px}
 .gx-mbox .nota{color:var(--tenue);font-size:13.5px;text-align:center;max-width:52ch;margin:0}
 @media (max-width:520px){.gx-card .corpo{grid-template-columns:34% 1fr;gap:12px;top:64px}.gx-card dd{font-size:13px}.gx-card .chip{display:none}}
-@media (prefers-reduced-motion:reduce){#gx-intro{display:none!important}html.gx-intro-on body{overflow:auto}}
 #sp-muto{display:none!important}
 </style>
 </head>
@@ -2937,7 +2942,7 @@ const GU = {
   setTimeout(() => { ultima = $$('.vista').find(x => !x.hidden); }, 0);
 
   /* ═════ CURSORE A MIRINO + EFFETTI ═════ */
-  if (matchMedia('(pointer: fine)').matches && !poco) {
+  if (matchMedia('(pointer: fine)').matches) {
     H.classList.add('gx-cur');
     const m = document.createElement('div'); m.id = 'gx-mira'; m.setAttribute('aria-hidden', 'true'); document.body.appendChild(m);
     let tx = -100, ty = -100, x = -100, y = -100;
