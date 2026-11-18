@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- versione 2026-11-18-elimina -->
+<!-- versione 2026-11-18-esiti2 -->
 <title>Gang Unit · NOW V4</title>
 <meta name="description" content="Regolamento e manuale operativo della Gang Unit del Los Santos Police Department · NOW V4 Roleplay.">
 <meta property="og:title" content="Gang Unit · NOW V4 — Area Agenti">
@@ -2193,7 +2193,7 @@ const GU = {
         <dl class="cmd-dati">${Object.entries(c.dati || {}).map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
         ${c.stato === 'in_attesa' ? `<label class="campo"><span>Messaggio per il candidato (facoltativo, arriva nel DM)</span><textarea rows="2" maxlength="900" placeholder="Es. Ti aspettiamo per il colloquio sabato alle 21"></textarea></label>
         <div class="b-az"><button class="btn p cmd-ok" type="button" data-esito="accettata">✅ Accetta</button><button class="btn cmd-ko" type="button" data-esito="rifiutata">❌ Rifiuta</button></div>`
-        : `<p class="cmd-esito">${c.stato === 'accettata' ? 'Accettata' : 'Rifiutata'} da <b>${esc(c.deciso_da || '—')}</b>${c.deciso_il ? ` il ${dataOra(c.deciso_il)}` : ''} · DM: ${c.dm_inviato ? (c.dm_esito === 'thread' ? '✓ DM chiusi: inviato in privato nel server' : c.dm_esito === 'non_consegnato' ? '⚠️ non è nel server Discord: vede l\'esito sul sito' : '✓ inviato in DM') : '⏳ in invio dal bot…'}${c.nota ? `<br>💬 ${esc(c.nota)}` : ''}</p>`}
+        : `<p class="cmd-esito">${c.stato === 'accettata' ? 'Accettata' : 'Rifiutata'} da <b>${esc(c.deciso_da || '—')}</b>${c.deciso_il ? ` il ${dataOra(c.deciso_il)}` : ''} · DM: ${c.dm_inviato ? (c.dm_esito === 'canale' ? '✓ DM chiusi: taggato nel canale esiti' : c.dm_esito === 'non_consegnato' ? '⚠️ non consegnato: vede l\'esito sul sito' : '✓ inviato in DM e taggato nel canale esiti') : '⏳ in invio dal bot…'}${c.nota ? `<br>💬 ${esc(c.nota)}` : ''}</p>`}
       </article>`).join('') : '<div class="cmd-vuoto">Nessuna candidatura in questa lista.</div>';
     } else if (schedaC === 'bandi') {
       await caricaBandiCmd(box);
