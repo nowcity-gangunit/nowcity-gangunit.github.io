@@ -165,7 +165,7 @@ td.cod{font:700 14px var(--f-mono);color:#fff;white-space:nowrap}
 .filtro{background:var(--pannello2);border:1px solid var(--linea);color:var(--tenue);border-radius:999px;padding:7px 13px;font:700 13px var(--f-testo);cursor:pointer}
 .filtro[aria-pressed="true"]{background:var(--blu);border-color:var(--blu);color:#fff}
 .pill{display:inline-block;font:700 11px var(--f-testo);letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:999px;border:1px solid currentColor}
-.pill.stato{color:#9fb8ff}.pill.intervento{color:var(--giallo)}.pill.emergenza{color:var(--rosso)}.pill.gang{color:var(--oro)}
+.pill.stato{color:#9fb8ff}.pill.intervento{color:var(--giallo)}.pill.emergenza{color:var(--rosso)}.pill.gang{color:var(--oro)}.pill.car{color:#ff7ab6}.pill.status{color:#35d0c0}
 
 .modulo{border:1px solid var(--linea);border-radius:12px;overflow:hidden;margin:14px 0}
 .modulo .mh{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 14px;background:var(--pannello2);border-bottom:1px solid var(--linea)}
@@ -663,7 +663,7 @@ html.sp-bloccato{overflow:hidden}
 .sp-rc:hover{transform:translateY(-2px);border-color:var(--blu)}
 .sp-rc b{font:800 17px var(--f-mono);color:#9fc0ff}
 .sp-rc span{font:500 12.5px/1.25 var(--f-testo);color:var(--tenue)}
-.sp-rc.emergenza b{color:var(--rosso)}.sp-rc.gang b{color:var(--oro)}.sp-rc.intervento b{color:var(--giallo)}
+.sp-rc.emergenza b{color:var(--rosso)}.sp-rc.car b{color:#ff7ab6}.sp-rc.status b{color:#35d0c0}.sp-rc.gang b{color:var(--oro)}.sp-rc.intervento b{color:var(--giallo)}
 .sp-log{border:1px dashed var(--linea2);border-radius:12px;padding:10px 12px;min-height:84px}
 .sp-log small{font:700 11px var(--f-testo);letter-spacing:.16em;text-transform:uppercase;color:var(--tenue)}
 .sp-log ol{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:4px}
@@ -790,6 +790,106 @@ html.sp-bloccato{overflow:hidden}
 }
 @media (prefers-reduced-motion:reduce){.sp-console:before,.sp-min i,.sp-r-antenna:after{animation:none}}
 .timbro{top:auto!important;bottom:20px;right:22px!important}
+
+/* ── HOME come gangunit ── */
+.bando-evid{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:20px;align-items:center;margin-top:20px;padding:18px 24px;border-radius:18px;border:1px solid rgba(53,208,127,.35);background:linear-gradient(100deg,rgba(53,208,127,.10),var(--pannello) 55%)}
+.bando-evid[data-stato="arrivo"]{border-color:rgba(255,201,74,.4);background:linear-gradient(100deg,rgba(255,201,74,.1),var(--pannello) 55%)}
+.bando-evid small{display:flex;align-items:center;gap:7px;font:800 12px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--verde)}
+.bando-evid small i{width:8px;height:8px;border-radius:50%;background:currentColor;box-shadow:0 0 10px currentColor;animation:sp-battito 1.4s infinite}
+.bando-evid > div > b{display:block;font:900 26px/1.1 var(--f-titolo);text-transform:uppercase;margin:4px 0 2px}
+.bando-evid > div > span{color:var(--tenue)}
+.be-cd{text-align:right}.be-cd small{justify-content:flex-end;color:var(--tenue)}.be-cd b{font:900 34px/1 var(--f-titolo);color:var(--verde);font-variant-numeric:tabular-nums}
+.sez-testa{margin:46px 0 18px}
+.sez-testa small{font:800 12px var(--f-mono);letter-spacing:.22em;text-transform:uppercase;color:var(--rosso)}
+.sez-testa h2{font:900 clamp(32px,4vw,48px)/1 var(--f-titolo);text-transform:uppercase;margin:8px 0 0}
+.categorie{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.cat{position:relative;display:flex;align-items:center;gap:16px;padding:20px 22px;border-radius:16px;border:1px solid var(--linea);background:linear-gradient(120deg,color-mix(in srgb,var(--c) 7%,var(--pannello)),var(--pannello) 60%);color:var(--testo);text-decoration:none}
+.cat:hover{border-color:color-mix(in srgb,var(--c) 55%,var(--linea))}
+.cat .ico{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 14%,transparent);border:1px solid color-mix(in srgb,var(--c) 35%,transparent);color:var(--c)}
+.cat .ico svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.cat-t b{display:block;font:800 22px/1.1 var(--f-titolo);text-transform:uppercase;letter-spacing:.02em}
+.cat-t span{display:block;margin-top:4px;color:var(--tenue);font-size:14.5px;line-height:1.35}
+.capi-zona{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:18px;align-items:start}
+.capi-a{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.cap-a{position:relative;display:flex;flex-direction:column;min-height:270px;padding:22px 22px 18px;border-radius:18px;border:1px solid color-mix(in srgb,var(--c) 30%,var(--linea));background:linear-gradient(170deg,color-mix(in srgb,var(--c) 16%,var(--pannello)),var(--pannello) 55%,#070b16);color:var(--testo);text-decoration:none;overflow:hidden}
+.cap-a:before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--c),transparent)}
+.cap-a .gigante{position:absolute;right:-6px;bottom:-26px;font:900 150px/1 var(--f-titolo);color:transparent;-webkit-text-stroke:2px color-mix(in srgb,var(--c) 40%,transparent);pointer-events:none;letter-spacing:-.02em}
+.cap-a .freccia{position:absolute;right:18px;top:18px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;border:1.5px solid color-mix(in srgb,var(--c) 70%,transparent);color:var(--c);transition:transform .2s,background .2s}
+.cap-a:hover .freccia{transform:translateX(3px);background:color-mix(in srgb,var(--c) 18%,transparent)}
+.cap-a small{font:800 12px var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--c);padding-right:44px}
+.cap-a b{font:900 clamp(24px,2.3vw,31px)/1.05 var(--f-titolo);overflow-wrap:anywhere;text-transform:uppercase;margin:6px 0 6px}
+.cap-a p{margin:0;color:var(--testo);opacity:.85;max-width:24ch;font-size:15.5px}
+.cap-a .piede{margin-top:auto;display:flex;align-items:center;gap:12px;padding-top:18px;position:relative}
+.cap-a .stato{font:700 12px var(--f-mono);color:var(--tenue);white-space:nowrap}
+.cap-a .barretta{flex:1;max-width:140px;height:3px;border-radius:3px;background:var(--linea);overflow:hidden}
+.cap-a .barretta i{display:block;height:100%;width:0;background:var(--c);transition:width .4s}
+.cap-a.fatto .stato{color:var(--verde)}
+.cap-a.esa .stato{color:var(--rosso);font-weight:800}
+.alto-comando{position:sticky;top:90px;padding:20px 18px;border-radius:20px;border:1px solid rgba(242,185,56,.35);background:linear-gradient(170deg,#141528,var(--pannello));box-shadow:0 30px 60px -30px rgba(242,185,56,.35)}
+.alto-comando:before{content:"";position:absolute;left:18px;right:18px;top:0;height:3px;border-radius:0 0 3px 3px;background:var(--oro)}
+.ac-testa small{font:800 12px var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--oro)}
+.ac-testa h3{font:900 28px/1.05 var(--f-titolo);text-transform:uppercase;margin:6px 0 14px}
+#ac-lista{display:grid;gap:14px}
+.ac-card{position:relative;text-align:center;border-radius:16px;border:1px solid var(--linea2);background:var(--pannello2);overflow:hidden;padding:0 14px 16px}
+.ac-banner{height:84px;margin:0 -14px;background:linear-gradient(135deg,#6d28d9,#1e3a8a 60%,#0b1222) center/cover}
+.ac-banner:after{content:"";display:block;height:100%;background:linear-gradient(180deg,transparent 40%,var(--pannello2))}
+.ac-av{position:relative;width:96px;height:96px;margin:-56px auto 8px}
+.ac-av img{width:96px;height:96px;border-radius:50%;object-fit:cover;border:4px solid var(--oro);box-shadow:0 0 0 4px var(--pannello2),0 10px 30px rgba(0,0,0,.6);background:var(--pannello)}
+.ac-card:nth-child(2) .ac-av img{border-color:var(--blu)}
+.ac-stelle{position:absolute;right:-6px;bottom:2px;min-width:34px;height:34px;padding:0 6px;border-radius:17px;display:grid;place-items:center;background:#0b0f1d;border:2px solid var(--oro);color:var(--oro);font-size:11px;letter-spacing:-1px}
+.ac-sig{font:800 11px var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--oro)}
+.ac-card h4{font:900 30px/1 var(--f-titolo);text-transform:uppercase;margin:6px 0 4px}
+.ac-nome{display:block;font:800 18px var(--f-testo)}
+.ac-ut{display:block;font:600 12.5px var(--f-mono);color:var(--tenue)}
+.ac-card p{margin:10px 0 12px;color:var(--tenue);font-size:14px;line-height:1.45}
+.ac-az{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.ac-az .btn{font-size:12.5px;padding:7px 11px;text-transform:none;letter-spacing:0;font-family:var(--f-testo)}
+.ac-nota{margin:14px 0 0;padding-top:12px;border-top:1px dashed var(--linea);color:var(--tenue);font-size:13.5px}
+@media (max-width:1180px){.capi-zona{grid-template-columns:1fr}.alto-comando{position:static}#ac-lista{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}}
+@media (max-width:980px){.categorie,.capi-a{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.categorie,.capi-a{grid-template-columns:1fr}.cap-a{min-height:200px}.bando-evid{grid-template-columns:1fr;text-align:left}.be-cd{text-align:left}.be-cd small{justify-content:flex-start}}
+
+/* ── accesso Discord ── */
+.account{display:flex;align-items:center;gap:8px;height:40px;padding:0 14px 0 8px;border-radius:999px;border:1px solid var(--linea2);background:var(--pannello);color:var(--testo);font:700 14px var(--f-testo);cursor:pointer;white-space:nowrap}
+.account:not(:has(img)):not(:has(.acc-ini)){background:#5865f2;border-color:#5865f2;color:#fff;padding:0 14px}
+.account svg{width:20px;height:20px;fill:currentColor}
+.account img,.acc-ini{width:28px;height:28px;border-radius:50%;object-fit:cover}
+.acc-ini{display:grid;place-items:center;background:var(--blu);color:#fff;font-weight:800}
+.account i{width:9px;height:9px;border-radius:50%}.account i.ok{background:var(--verde);box-shadow:0 0 8px var(--verde)}.account i.no{background:var(--giallo)}
+.acc-n{max-width:130px;overflow:hidden;text-overflow:ellipsis}
+.nav a.chiuso{opacity:.6}.nav a.chiuso:after{content:"🔒";position:static;background:none;height:auto;width:auto;font-size:11px;margin-left:2px}
+.nav a.chiuso.attivo:after{content:"🔒"}
+.cat.chiuso,.cap-a.chiuso{filter:saturate(.5)}
+.cat.chiuso:after,.cap-a.chiuso:after{content:"🔒 Solo membri";position:absolute;top:10px;right:12px;font:700 11px var(--f-mono);color:var(--tenue);z-index:2}
+.cap-a.chiuso:after{top:auto;bottom:14px}
+.blocco{display:none}
+body:not(.membro) .blocco{display:block}
+body:not(.membro) #v-strumenti > .wrap,body:not(.membro) #v-esami > .wrap{display:none}
+.bl-box{max-width:620px;margin:70px auto;padding:40px 34px;text-align:center;border-radius:24px;border:1px solid var(--linea2);background:radial-gradient(500px 220px at 50% 0,rgba(88,101,242,.22),transparent 70%),linear-gradient(170deg,var(--pannello2),var(--pannello));position:relative}
+.bl-box:before{content:"";position:absolute;left:24px;right:24px;top:0;height:3px;border-radius:0 0 3px 3px;background:linear-gradient(90deg,var(--blu),#a78bfa,var(--rosso))}
+.bl-luc{width:74px;height:74px;margin:0 auto 14px;border-radius:22px;display:grid;place-items:center;background:rgba(88,101,242,.16);border:1px solid rgba(88,101,242,.45);color:#9aa4ff}
+.bl-luc svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.bl-box small{font:800 12px var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--oro)}
+.bl-box h2{font:900 48px/1 var(--f-titolo);text-transform:uppercase;margin:8px 0 12px}
+.bl-box p{color:var(--tenue);margin:0 auto 20px;max-width:46ch}
+.bl-box .btn{margin:4px}
+.bl-btn{background:#5865f2!important;border-color:#5865f2!important;color:#fff!important}
+.acc-modale{position:fixed;inset:0;z-index:250;display:grid;place-items:center;padding:20px;background:rgba(2,4,10,.72);backdrop-filter:blur(6px)}
+.acc-modale[hidden]{display:none}
+.acc-box{position:relative;width:min(560px,100%);padding:34px 30px 28px;text-align:center;border-radius:24px;border:1px solid var(--linea2);background:linear-gradient(170deg,var(--pannello2),var(--pannello));box-shadow:0 40px 90px rgba(0,0,0,.7)}
+.acc-box:before{content:"";position:absolute;left:24px;right:24px;top:0;height:3px;background:linear-gradient(90deg,var(--blu),#a78bfa)}
+.acc-x{position:absolute;right:14px;top:14px;width:38px;height:38px;border-radius:11px;border:1px solid var(--linea2);background:var(--pannello);color:var(--testo);cursor:pointer}
+.acc-chi{display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border-radius:999px;border:1px solid var(--linea2);background:var(--pannello2);font-size:14px}
+.acc-chi img{width:30px;height:30px;border-radius:50%}
+.acc-box h2{font:900 44px/1 var(--f-titolo);text-transform:uppercase;margin:16px 0 14px}
+.acc-liv{display:inline-flex;align-items:center;gap:9px;padding:10px 20px;border-radius:999px;font:800 17px var(--f-testo)}
+.acc-liv i{width:10px;height:10px;border-radius:50%;background:currentColor}
+.acc-liv.ok{color:var(--verde);border:1px solid var(--verde);background:rgba(53,208,127,.08)}
+.acc-liv.no{color:var(--giallo);border:1px solid var(--giallo);background:rgba(255,201,74,.08)}
+.acc-box p{color:var(--tenue);margin:14px 0 6px}
+.acc-box .b-az{justify-content:center}
+@media (max-width:640px){.acc-n{display:none}.account{padding:0 8px}}
+.marchio b{white-space:nowrap}@media (max-width:1500px){.marchio small{display:none}}@media (max-width:1300px) and (min-width:1101px){.barra .cerca{max-width:200px}}
 </style>
 </head>
 <body id="top">
@@ -809,6 +909,7 @@ html.sp-bloccato{overflow:hidden}
       <input id="q" type="search" placeholder="Cerca nel regolamento… (premi /)" autocomplete="off" aria-label="Cerca nel regolamento">
       <span class="esito" id="esito"></span>
     </label>
+    <button class="account" id="account" type="button"></button>
     <button class="minaccia" id="minaccia" type="button" title="Livello di minaccia (art. 3.2)"><i></i><span>Minaccia</span><b id="min-t">Verde</b></button>
     <button class="menu-btn" id="menu-btn" aria-controls="indice" aria-expanded="false">Indice</button>
     <button class="nav-btn" id="nav-btn" type="button" aria-controls="nav" aria-expanded="false" aria-label="Apri il menu"><span></span><span></span><span></span></button>
@@ -859,17 +960,15 @@ html.sp-bloccato{overflow:hidden}
     <div><b id="n-cod">0</b><span>Codici radio</span></div>
   </div>
 
-  <nav class="capi" aria-label="Capitoli">
-    <a class="capo" href="#cap-1"><span class="n">I</span><b>La Gang Unit</b><span>Missione, valori e codice di condotta</span></a>
-    <a class="capo" href="#cap-2"><span class="n">II</span><b>Gerarchia</b><span>Gradi, catena di comando, promozioni</span></a>
-    <a class="capo" href="#cap-3"><span class="n">III</span><b>Ambito operativo</b><span>Gang, intelligence e livelli di minaccia</span></a>
-    <a class="capo" href="#cap-4"><span class="n">IV</span><b>Procedure</b><span>Forza, fermo, arresto, raid e inseguimenti</span></a>
-    <a class="capo" href="#cap-5"><span class="n">V</span><b>Comunicazioni</b><span>Radio, codici e coordinamento</span></a>
-    <a class="capo" href="#cap-6"><span class="n">VI</span><b>Disciplina</b><span>Violazioni e provvedimenti</span></a>
-    <a class="capo" href="#cap-7"><span class="n">VII</span><b>Documentazione</b><span>Rapporti e moduli da copiare</span></a>
-    <a class="capo" href="#app-a"><span class="n">A</span><b>Appendice</b><span>Glossario, modifiche, approvazione</span></a>
-    <a class="capo esa" href="#esame"><span class="n">★</span><b>Esame</b><span>10 domande: sei pronto per la GU?</span></a>
-  </nav>
+  <div class="bando-evid" id="bando-evid" hidden></div>
+  <div class="sez-testa"><small>Accesso rapido</small><h2>Tutto quello che serve in servizio</h2></div>
+  <div class="categorie"><a class="cat" href="#regolamento" style="--c:#3b82f6"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v17H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M4 19.5V4.5M8 7h8M8 11h6"/></svg></span><span class="cat-t"><b>Regolamento</b><span>7 capitoli e appendice, con ricerca e progressi di lettura</span></span></a><a class="cat" href="#art-2-1" style="--c:#f5b942"><span class="ico"><svg viewBox="0 0 24 24"><path d="m12 3 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg></span><span class="cat-t"><b>Gerarchia</b><span>11 gradi, 4 fasce, chi comanda e chi risponde</span></span></a><a class="cat" href="#strumenti-radio" style="--c:#7cb0ff"><span class="ico"><svg viewBox="0 0 24 24"><rect x="6" y="8" width="12" height="14" rx="2"/><path d="M9 8V2M10 13h4M10 17h4"/></svg></span><span class="cat-t"><b>Codici radio</b><span>Cerca un codice e allenati con le carte</span></span></a><a class="cat" href="#strumenti-prontuario" style="--c:#ff4d5e"><span class="ico"><svg viewBox="0 0 24 24"><path d="M9 4h6v3H9zM7 5H5v17h14V5h-2"/><path d="m8.5 13 2.2 2.2L15.5 10.5"/></svg></span><span class="cat-t"><b>Prontuario</b><span>Checklist passo per passo per ogni intervento</span></span></a><a class="cat" href="#strumenti-moduli" style="--c:#2fd38a"><span class="ico"><svg viewBox="0 0 24 24"><path d="M14 2H6v20h12V6z"/><path d="M14 2v4h4M9 12h6M9 16h6"/></svg></span><span class="cat-t"><b>Moduli e rapporti</b><span>Compili i campi, il sito prepara il testo per Discord</span></span></a><a class="cat" href="#strumenti-carriera" style="--c:#a78bfa"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20h4v-6H4zM10 20h4V9h-4zM16 20h4V4h-4z"/></svg></span><span class="cat-t"><b>Carriera</b><span>Dalla Recluta al Comandante: tempi e requisiti</span></span></a><a class="cat" href="#bandi" style="--c:#ffc94a"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1zM15 8a5 5 0 0 1 0 8M18 5a9 9 0 0 1 0 14"/></svg></span><span class="cat-t"><b>Bandi</b><span>Posti aperti e candidature che arrivano su Discord</span></span></a><a class="cat" href="#esami" style="--c:#ff9f43"><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3 2 8l10 5 10-5z"/><path d="M6 10.5V16c3 2.5 9 2.5 12 0v-5.5M22 8v6"/></svg></span><span class="cat-t"><b>Esami</b><span>Esame d'accademia con attestato</span></span></a><a class="cat" href="#strumenti-faq" style="--c:#22d3ee"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M9.5 9.2a2.6 2.6 0 0 1 5 .8c0 1.8-2.5 2.2-2.5 4M12 17.5v.01"/></svg></span><span class="cat-t"><b>Domande frequenti</b><span>Le risposte rapide ai dubbi più comuni</span></span></a></div>
+  <div class="sez-testa"><small>Il regolamento</small><h2>Capitoli</h2></div>
+  <div class="capi-zona">
+    <nav class="capi-a" aria-label="Capitoli"><a class="cap-a" href="#cap-1" data-cap="cap-1" style="--c:#3b82f6"><span class="gigante" aria-hidden="true">I</span><span class="freccia" aria-hidden="true">→</span><small>Capitolo I · <span class="n-art"></span></small><b>La Gang Unit</b><p>Missione, valori e codice di condotta</p><div class="piede"><span class="stato">da leggere</span><span class="barretta"><i></i></span></div></a><a class="cap-a" href="#cap-2" data-cap="cap-2" style="--c:#f5b942"><span class="gigante" aria-hidden="true">II</span><span class="freccia" aria-hidden="true">→</span><small>Capitolo II · <span class="n-art"></span></small><b>Gerarchia</b><p>Gradi, catena di comando, promozioni</p><div class="piede"><span class="stato">da leggere</span><span class="barretta"><i></i></span></div></a><a class="cap-a" href="#cap-3" data-cap="cap-3" style="--c:#22d3ee"><span class="gigante" aria-hidden="true">III</span><span class="freccia" aria-hidden="true">→</span><small>Capitolo III · <span class="n-art"></span></small><b>Ambito operativo</b><p>Gang, intelligence e livelli di minaccia</p><div class="piede"><span class="stato">da leggere</span><span class="barretta"><i></i></span></div></a><a class="cap-a" href="#cap-4" data-cap="cap-4" style="--c:#ff4d5e"><span class="gigante" aria-hidden="true">IV</span><span class="freccia" aria-hidden="true">→</span><small>Capitolo IV · <span class="n-art"></span></small><b>Procedure</b><p>Forza, fermo, arresto, raid e inseguimenti</p><div class="piede"><span class="stato">da leggere</span><span class="barretta"><i></i></span></div></a><a class="cap-a" href="#cap-5" data-cap="cap-5" style="--c:#2fd38a"><span class="gigante" aria-hidden="true">V</span><span class="freccia" aria-hidden="true">→</span><small>Capitolo V · <span class="n-art"></span></small><b>Comunicazioni</b><p>Radio, codici e coordinamento</p><div class="piede"><span class="stato">da leggere</span><span class="barretta"><i></i></span></div></a><a class="cap-a" href="#cap-6" data-cap="cap-6" style="--c:#ff9f43"><span class="gigante" aria-hidden="true">VI</span><span class="freccia" aria-hidden="true">→</span><small>Capitolo VI · <span class="n-art"></span></small><b>Disciplina</b><p>Violazioni e provvedimenti</p><div class="piede"><span class="stato">da leggere</span><span class="barretta"><i></i></span></div></a><a class="cap-a" href="#cap-7" data-cap="cap-7" style="--c:#a78bfa"><span class="gigante" aria-hidden="true">VII</span><span class="freccia" aria-hidden="true">→</span><small>Capitolo VII · <span class="n-art"></span></small><b>Documentazione</b><p>Rapporti e moduli da copiare</p><div class="piede"><span class="stato">da leggere</span><span class="barretta"><i></i></span></div></a><a class="cap-a" href="#app-a" data-cap="app-a" style="--c:#7cb0ff"><span class="gigante" aria-hidden="true">A</span><span class="freccia" aria-hidden="true">→</span><small>Appendice · <span class="n-art"></span></small><b>Appendice</b><p>Glossario, modifiche, approvazione</p><div class="piede"><span class="stato">da leggere</span><span class="barretta"><i></i></span></div></a><a class="cap-a esa" href="#esami" style="--c:#ff4d5e"><span class="gigante" aria-hidden="true">★</span><span class="freccia" aria-hidden="true">→</span><small>Esame · attestato</small><b>Esami</b><p>Sei pronto per la GU? Mettiti alla prova</p><div class="piede"><span class="stato">10 domande e l'attestato</span></div></a>
+    </nav>
+    <aside class="alto-comando" aria-label="Alto Comando"><div class="ac-testa"><small>★ Alto Comando</small><h3>Chi guida la Gang Unit</h3></div><div id="ac-lista"></div><p class="ac-nota">Per segnalare un comportamento scorretto di un superiore: ticket <b>Affari Interni</b> (<a href="#art-2-2">art. 2.2</a>).</p></aside>
+  </div>
 </section>
 
 </section>
@@ -995,7 +1094,7 @@ html.sp-bloccato{overflow:hidden}
     <h3><span class="ref">ART. 3.1</span>Competenze della GU</h3>
     <p>La Gang Unit interviene con priorità su:</p>
     <ul>
-      <li>sparatorie e scontri tra gang (10-71 con più soggetti armati);</li>
+      <li>sparatorie e scontri tra gang (G-3, oppure 10-10 se sparano sugli agenti);</li>
       <li>traffico e spaccio di stupefacenti organizzato;</li>
       <li>traffico di armi e matricole abrase;</li>
       <li>rapine compiute da gruppi organizzati;</li>
@@ -1130,7 +1229,7 @@ Ha diritto a cure mediche e a un pasto. Ha compreso i suoi diritti?</pre></div>
   </article>
 
   <article class="art" id="art-4-7" data-t="Scontro tra gang">
-    <h3><span class="ref">ART. 4.7</span>Scontro tra gang · 10-71</h3>
+    <h3><span class="ref">ART. 4.7</span>Scontro tra gang · G-3</h3>
     <ol>
       <li>La prima unità sul posto <b>non entra</b>: si ferma a distanza di sicurezza e comunica numero di soggetti, armi e via di fuga.</li>
       <li>La centrale alza il livello di minaccia almeno a Giallo.</li>
@@ -1176,7 +1275,7 @@ Ha diritto a cure mediche e a un pasto. Ha compreso i suoi diritti?</pre></div>
       <button class="filtro" type="button" data-f="stato" aria-pressed="false">Stato</button>
       <button class="filtro" type="button" data-f="intervento" aria-pressed="false">Intervento</button>
       <button class="filtro" type="button" data-f="emergenza" aria-pressed="false">Emergenza</button>
-      <button class="filtro" type="button" data-f="gang" aria-pressed="false">Gang Unit</button>
+      <button class="filtro" type="button" data-f="car" aria-pressed="false">Car code</button><button class="filtro" type="button" data-f="status" aria-pressed="false">Status</button><button class="filtro" type="button" data-f="gang" aria-pressed="false">Gang Unit</button>
     </div>
     <div class="tab"><table id="radio">
       <thead><tr><th>Codice</th><th>Significato</th><th>Tipo</th></tr></thead>
@@ -1185,15 +1284,25 @@ Ha diritto a cure mediche e a un pasto. Ha compreso i suoi diritti?</pre></div>
   </article>
 
   <article class="art" id="art-5-2" data-t="Codici di risposta">
-    <h3><span class="ref">ART. 5.2</span>Codici di risposta</h3>
+    <h3><span class="ref">ART. 5.2</span>Car code e status code</h3>
+    <h4>🚨 Car code</h4>
     <div class="tab"><table>
       <thead><tr><th>Codice</th><th>Significato</th><th>Lampeggianti</th><th>Sirene</th></tr></thead>
       <tbody>
-        <tr><td class="cod">Codice 1</td><td>Intervento non urgente</td><td>No</td><td>No</td></tr>
-        <tr><td class="cod">Codice 2</td><td>Urgente, arrivo rapido e silenzioso</td><td>Sì</td><td>No</td></tr>
-        <tr><td class="cod">Codice 3</td><td>Emergenza</td><td>Sì</td><td>Sì</td></tr>
-        <tr><td class="cod">Codice 4</td><td>Situazione sotto controllo, nessun altro supporto</td><td>No</td><td>No</td></tr>
-        <tr><td class="cod">Codice 5</td><td>Avvicinamento silenzioso a un covo o a un sospetto</td><td>No</td><td>No</td></tr>
+        <tr><td class="cod">Codice 0</td><td>Emergenza massima: attacco alle istituzioni o rapimento di pubblico ufficiale</td><td>Sì</td><td>Sì</td></tr>
+        <tr><td class="cod">Codice 1</td><td>Possibile situazione di pericolo</td><td>No</td><td>No</td></tr>
+        <tr><td class="cod">Codice 2</td><td>Situazione da verificare</td><td>Sì</td><td>No</td></tr>
+        <tr><td class="cod">Codice 3</td><td>Pericolo accertato</td><td>Sì</td><td>Sì</td></tr>
+        <tr><td class="cod">Codice 4</td><td>Situazione sotto controllo</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table></div>
+    <h4>📡 Status code</h4>
+    <div class="tab"><table>
+      <thead><tr><th>Status</th><th>Significato</th></tr></thead>
+      <tbody>
+        <tr><td class="cod">Status 1</td><td>Pattuglia operativa e disponibile</td></tr>
+        <tr><td class="cod">Status 2</td><td>Pattuglia impegnata in un'operazione (specificare la motivazione)</td></tr>
+        <tr><td class="cod">Status 3</td><td>Pattuglia in rifornimento di cibo o carburante</td></tr>
       </tbody>
     </table></div>
   </article>
@@ -1204,7 +1313,7 @@ Ha diritto a cure mediche e a un pasto. Ha compreso i suoi diritti?</pre></div>
       <li>Ascoltare prima di parlare. Non si interrompe chi sta comunicando.</li>
       <li>Ci si identifica sempre con la matricola: «GU-104 a centrale».</li>
       <li>Si conferma ogni ordine con <b>10-4</b>.</li>
-      <li>Durante un 10-99 o un 10-71 il canale resta libero per le unità coinvolte.</li>
+      <li>Durante un 10-100, un 10-10 o un Codice 0 il canale resta libero per le unità coinvolte.</li>
       <li>Le operazioni sotto copertura usano un canale separato, scelto nel briefing.</li>
     </ul>
     <div class="box nota"><b class="e">NOTA</b><p>Ogni richiesta di supporto dice sempre tre cose: <b>dove</b>, <b>cosa</b> succede e <b>di cosa</b> c'è bisogno.</p></div>
@@ -1407,7 +1516,7 @@ Note:</pre></div>
     <div class="pannello-s" id="s-radio" role="tabpanel">
       <div class="due">
         <div class="riquadro"><h3 class="r-tit">Tutti i codici <small>Anche su Discord con <kbd>/codici-radio</kbd></small></h3>
-          <div class="radio-ctl" id="s-radio-ctl"><input type="search" id="s-rq" placeholder="Cerca un codice o un significato" aria-label="Cerca codice radio"><button class="filtro2" type="button" data-f="tutti" aria-pressed="true">Tutti</button><button class="filtro2" type="button" data-f="stato" aria-pressed="false">Stato</button><button class="filtro2" type="button" data-f="intervento" aria-pressed="false">Intervento</button><button class="filtro2" type="button" data-f="emergenza" aria-pressed="false">Emergenza</button><button class="filtro2" type="button" data-f="gang" aria-pressed="false">Gang Unit</button></div>
+          <div class="radio-ctl" id="s-radio-ctl"><input type="search" id="s-rq" placeholder="Cerca un codice o un significato" aria-label="Cerca codice radio"><button class="filtro2" type="button" data-f="tutti" aria-pressed="true">Tutti</button><button class="filtro2" type="button" data-f="stato" aria-pressed="false">Stato</button><button class="filtro2" type="button" data-f="intervento" aria-pressed="false">Intervento</button><button class="filtro2" type="button" data-f="emergenza" aria-pressed="false">Emergenza</button><button class="filtro2" type="button" data-f="car" aria-pressed="false">Car code</button><button class="filtro2" type="button" data-f="status" aria-pressed="false">Status</button><button class="filtro2" type="button" data-f="gang" aria-pressed="false">Gang Unit</button></div>
           <div class="tab"><table><thead><tr><th>Codice</th><th>Significato</th><th>Tipo</th></tr></thead><tbody></tbody></table></div>
         </div>
         <div class="riquadro flash" id="flash"><h3 class="r-tit">Allenamento <small>Indovina il significato, poi gira la carta</small></h3>
@@ -1495,15 +1604,21 @@ Note:</pre></div>
 
   // ═════ CODICI RADIO ═════
   const CODICI = [
-    ['10-4', 'Ricevuto', 'stato'], ['10-6', 'Occupato', 'stato'], ['10-7', 'Fuori servizio', 'stato'], ['10-8', 'In servizio', 'stato'],
-    ['10-9', 'Ripetere', 'stato'], ['10-20', 'Posizione', 'stato'], ['10-23', 'Arrivato sul posto', 'stato'], ['10-41', 'Inizio turno', 'stato'], ['10-42', 'Fine turno', 'stato'],
-    ['10-10', 'Rissa in corso', 'intervento'], ['10-15', 'Soggetto in custodia, in arrivo in centrale', 'intervento'], ['10-28', 'Controllo targa', 'intervento'], ['10-29', 'Controllo precedenti', 'intervento'],
-    ['10-38', 'Fermo di un veicolo', 'intervento'], ['10-50', 'Incidente stradale', 'intervento'], ['10-55', 'Traffic stop', 'intervento'], ['10-66', 'Veicolo o persona sospetta', 'intervento'],
-    ['10-32', 'Persona armata', 'emergenza'], ['10-71', 'Spari sul posto', 'emergenza'], ['10-80', 'Inseguimento', 'emergenza'], ['10-90', 'Rapina in corso', 'emergenza'], ['10-99', 'Agente in pericolo, tutte le unità', 'emergenza'],
+    ['10-0', 'Crash', 'intervento'], ['10-2', 'Standby / in attesa', 'stato'], ['10-3', 'Silenzio radio', 'stato'], ['10-4', 'Ricevuto', 'stato'], ['10-5', 'Ripetere', 'stato'],
+    ['10-6', 'Agente occupato', 'stato'], ['10-7', 'Fuori servizio', 'stato'], ['10-8', 'Entrata in servizio', 'stato'], ['10-10', 'Shotfire · spari sugli operatori', 'emergenza'],
+    ['10-20', 'Posizione pattuglia', 'stato'], ['10-22', 'Annullamento intervento', 'stato'], ['10-25', 'Soggetto a terra', 'intervento'],
+    ['10-27', 'Richiesta supporto per trasporto sospettato in custodia', 'intervento'], ['10-28', 'Sospettato in custodia', 'intervento'], ['10-30', 'Furto di veicolo', 'intervento'],
+    ['10-35', 'Furto in abitazione', 'intervento'], ['10-36', 'Spaccio', 'intervento'], ['10-44', 'Rientro in centrale', 'stato'], ['10-50', 'Pattugliamento cittadino', 'stato'],
+    ['10-55', 'Fermo stradale', 'intervento'], ['10-59', 'Controllo attività', 'intervento'], ['10-60', 'Pattuglia di supporto', 'intervento'], ['10-71', 'Briefing dipartimentale', 'stato'],
+    ['10-75', 'Richiesta unità medica', 'emergenza'], ['10-80', 'Inseguimento in corso', 'emergenza'], ['10-99', 'Rapina a mano armata', 'emergenza'], ['10-100', 'Agente a terra', 'emergenza'],
+    ['653M', 'Il soggetto ha utilizzato un dispositivo elettronico', 'intervento'],
+    ['Codice 0', 'Emergenza massima: attacco alle istituzioni o rapimento di pubblico ufficiale', 'car'], ['Codice 1', 'Possibile pericolo: sirene e lampeggianti spenti', 'car'],
+    ['Codice 2', 'Situazione da verificare: solo lampeggianti attivi', 'car'], ['Codice 3', 'Pericolo accertato: sirene e lampeggianti attivi', 'car'], ['Codice 4', 'Situazione sotto controllo', 'car'],
+    ['Status 1', 'Pattuglia operativa e disponibile', 'status'], ['Status 2', 'Pattuglia impegnata in un\'operazione (specificare il motivo)', 'status'], ['Status 3', 'Pattuglia in rifornimento di cibo o carburante', 'status'],
     ['G-1', 'Avvistamento di membri di una gang nota', 'gang'], ['G-2', 'Raduno di gang armate', 'gang'], ['G-3', 'Scontro tra gang in corso', 'gang'],
     ['G-4', 'Covo o laboratorio individuato', 'gang'], ['G-5', 'Operazione GU in corso, unità non GU fuori dall\'area', 'gang'], ['G-6', 'Informatore sul posto, non intervenire', 'gang'],
   ];
-  const NOMI_T = { stato: 'Stato', intervento: 'Intervento', emergenza: 'Emergenza', gang: 'Gang Unit' };
+  const NOMI_T = { stato: 'Ten code · stato', intervento: 'Ten code · intervento', emergenza: 'Emergenza', car: 'Car code', status: 'Status code', gang: 'Gang Unit' };
   $('#radio tbody').innerHTML = CODICI.map(([c, s, t]) => `<tr data-t="${t}"><td class="cod">${c}</td><td>${s}</td><td><span class="pill ${t}">${NOMI_T[t]}</span></td></tr>`).join('');
   let filtro = 'tutti';
   function radio() {
@@ -1601,7 +1716,7 @@ Note:</pre></div>
   document.addEventListener('input', e => { if (e.target.id === 'rq') radio(); });
 
   // ═════ NASTRO ═════
-  const voci = ['LIVELLO DI MINACCIA <em class="liv">VERDE</em>', '<b>GU-NOW-001</b> · REV. 1.0 IN VIGORE', '<b>10-99</b> AGENTE IN PERICOLO · TUTTE LE UNITÀ', '<b>G-3</b> SCONTRO TRA GANG · NON ENTRARE DA SOLI', 'RAID SOLO CON AUTORIZZAZIONE DEL <b>CAPITANO</b>', 'TIMBRA SEMPRE ENTRATA E USCITA', '<b>CODICE 5</b> AVVICINAMENTO SILENZIOSO', 'NESSUN CONTATTO NON OPERATIVO CON LE GANG', 'LA VITA DELL\'OSTAGGIO VIENE PRIMA DI TUTTO'];
+  const voci = ['LIVELLO DI MINACCIA <em class="liv">VERDE</em>', '<b>GU-NOW-001</b> · REV. 1.0 IN VIGORE', '<b>10-100</b> AGENTE A TERRA · TUTTE LE UNITÀ', '<b>G-3</b> SCONTRO TRA GANG · NON ENTRARE DA SOLI', 'RAID SOLO CON AUTORIZZAZIONE DEL <b>CAPITANO</b>', 'TIMBRA SEMPRE ENTRATA E USCITA', '<b>CODICE 5</b> AVVICINAMENTO SILENZIOSO', 'NESSUN CONTATTO NON OPERATIVO CON LE GANG', 'LA VITA DELL\'OSTAGGIO VIENE PRIMA DI TUTTO'];
   $('#nastro').innerHTML = [...voci, ...voci].map(v => `<span>◆ ${v}</span>`).join('');
 
   // ═════ VOCE ATTIVA + BARRA DI LETTURA + PARALLASSE ═════
@@ -1660,6 +1775,19 @@ const GU = {
   webhookEsami: '',                // canale dove arrivano gli esiti degli esami
   menzione: '',                    // es. '<@&ID_RUOLO>' per avvisare l'Alto Comando (facoltativo)
   sito: 'https://nowcity-gangunit.github.io/',
+  // ── ACCESSO CON DISCORD ──
+  // clientId: ID dell'applicazione su discord.com/developers · server: ID del server Discord
+  // ruolo: solo chi ha questo ruolo apre Strumenti ed Esami
+  discord: { clientId: '', server: '', ruolo: '1570057959004709035' },
+  // ── ALTO COMANDO ── (id = ID utente Discord: tasto destro sul profilo → Copia ID utente)
+  comando: [
+    { grado: 'Comandante', sigla: 'CMD', stelle: 3, nome: 'Ryder', utente: 'ryder1356', id: '156804728926240769',
+      avatar: 'https://cdn.discordapp.com/avatars/156804728926240769/a_fe59307c67997c511327866dea6896cb.gif?size=256', banner: '',
+      descr: 'Guida l\'unità, approva le operazioni maggiori e decide su promozioni ed espulsioni.' },
+    { grado: 'Vice Comandante', sigla: 'VCM', stelle: 2, nome: 'KYGO ✯', utente: 'realkygoo', id: '1069275006376362195',
+      avatar: 'https://cdn.discordapp.com/avatars/1069275006376362195/6196d98cc0947a1f953756a43e64842c.png?size=256', banner: 'https://cdn.discordapp.com/banners/1069275006376362195/a0b28efcef0197e7502bb697cba505bf.png?size=600',
+      descr: 'Sostituisce il Comandante, coordina gli Ufficiali e la disciplina.' },
+  ],
   // ── BANDI ── aggiungi, togli o modifica i bandi qui (date: 'AAAA-MM-GGTHH:MM')
   bandi: [
     {
@@ -1686,6 +1814,85 @@ const GU = {
     if (!url) return false;
     try { const r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }); return r.ok; } catch { return false; }
   }
+
+  /* ═════════════ ACCESSO CON DISCORD ═════════════ */
+  const DC = GU.discord || {}, CONFIG_OK = !!(DC.clientId && DC.server && DC.ruolo);
+  const RISERVATE = ['strumenti', 'esami'];
+  // ritorno da Discord: il token arriva nell'indirizzo dopo il #
+  (function ritorno() {
+    const h = new URLSearchParams(location.hash.slice(1));
+    if (h.get('access_token')) {
+      const att = sessionStorage.getItem('gu-stato');
+      if (att && att === h.get('state')) LS.set('gu-token', { t: h.get('access_token'), scad: Date.now() + (+h.get('expires_in') || 3600) * 1000 });
+      const dove = sessionStorage.getItem('gu-dopo') || 'home';
+      history.replaceState(null, '', location.pathname + '#' + dove);
+    } else if (h.get('error')) history.replaceState(null, '', location.pathname + '#home');
+  })();
+  let utente = LS.get('gu-utente', null);
+  const membro = () => !!(utente && utente.membro && utente.scad > Date.now());
+  function accedi() {
+    if (!CONFIG_OK) { toast('Accesso con Discord non ancora configurato'); return; }
+    const stato = Math.random().toString(36).slice(2) + Date.now().toString(36);
+    sessionStorage.setItem('gu-stato', stato);
+    sessionStorage.setItem('gu-dopo', (location.hash.slice(1) || 'home'));
+    const url = new URL('https://discord.com/oauth2/authorize');
+    url.search = new URLSearchParams({ client_id: DC.clientId, response_type: 'token', redirect_uri: location.origin + location.pathname, scope: 'identify guilds.members.read', state: stato, prompt: 'none' });
+    location.href = url;
+  }
+  function esci() { LS.set('gu-token', null); LS.set('gu-utente', null); utente = null; applicaAccesso(); chiudiModale(); toast('Sei uscito da Discord'); }
+  async function verifica() {
+    const tk = LS.get('gu-token', null); if (!tk || tk.scad < Date.now()) return;
+    try {
+      const H = { headers: { Authorization: 'Bearer ' + tk.t } };
+      const me = await fetch('https://discord.com/api/users/@me', H).then(r => r.ok ? r.json() : Promise.reject(r.status));
+      const r = await fetch(`https://discord.com/api/users/@me/guilds/${DC.server}/member`, H);
+      const m = r.ok ? await r.json() : null;
+      utente = { id: me.id, nome: m?.nick || me.global_name || me.username, utente: me.username, avatar: me.avatar ? `https://cdn.discordapp.com/avatars/${me.id}/${me.avatar}.png?size=64` : '', nelServer: !!m, membro: !!(m && m.roles?.includes(DC.ruolo)), scad: tk.scad };
+      LS.set('gu-utente', utente);
+    } catch { /* token scaduto o rete assente: resta l'ultimo stato valido */ }
+    applicaAccesso();
+  }
+  function applicaAccesso() {
+    const ok = membro();
+    document.body.classList.toggle('membro', ok);
+    const b = $('#account');
+    b.innerHTML = utente && utente.scad > Date.now()
+      ? `${utente.avatar ? `<img src="${esc(utente.avatar)}" alt="">` : '<span class="acc-ini">' + esc((utente.nome || '?')[0]) + '</span>'}<span class="acc-n">${esc(utente.nome)}</span><i class="${ok ? 'ok' : 'no'}"></i>`
+      : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 4.4A19.6 19.6 0 0 0 15.4 3l-.6 1.3a18 18 0 0 0-5.6 0L8.6 3a19.6 19.6 0 0 0-4.9 1.4C.6 9 0 13.5.3 18a19.8 19.8 0 0 0 6 3l1.3-2a12.7 12.7 0 0 1-2-1l.5-.4a14 14 0 0 0 12 0l.5.4-2 1 1.3 2a19.7 19.7 0 0 0 6-3c.4-5.2-.7-9.6-3.6-13.6zM8.5 15.3c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4zm7 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4z"/></svg><span class="acc-n">Accedi</span>';
+    $$('a[data-v]', nav).forEach(a => a.classList.toggle('chiuso', RISERVATE.includes(a.dataset.v) && !ok));
+    $$('.cat, .cap-a').forEach(c => { const h = c.getAttribute('href') || ''; c.classList.toggle('chiuso', !ok && /^#(strumenti|esami)/.test(h)); });
+    $$('.blocco').forEach(x => {
+      const dentro = utente && utente.scad > Date.now();
+      x.querySelector('.bl-txt').innerHTML = !CONFIG_OK ? 'L\'accesso con Discord non è ancora attivo. L\'Alto Comando deve completare le impostazioni del sito.'
+        : !dentro ? 'Questa sezione è riservata agli agenti della Gang Unit. Accedi con Discord: il sito controlla da solo se hai il ruolo.'
+        : !utente.nelServer ? `Sei entrato come <b>${esc(utente.nome)}</b>, ma il tuo account non risulta nel server Discord della Gang Unit.`
+        : `Sei entrato come <b>${esc(utente.nome)}</b>, ma non hai ancora il ruolo <b>Gang Unit</b>. Chiedilo con la richiesta ruoli su Discord, poi premi «Controlla di nuovo».`;
+      x.querySelector('.bl-btn').textContent = dentro ? 'Controlla di nuovo' : 'Accedi con Discord';
+    });
+    const c = ME(); if (ok && !c.discord) { LS.set('gu-candidato', { ...c, discord: '@' + utente.utente }); renderCandidato(); }
+  }
+  // schermata di blocco nelle sezioni riservate
+  RISERVATE.forEach(v => $('#v-' + v).insertAdjacentHTML('afterbegin', `<div class="blocco"><div class="bl-box"><div class="bl-luc" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div><small>Solo membri</small><h2>Area riservata</h2><p class="bl-txt"></p><button type="button" class="btn p bl-btn">Accedi con Discord</button><a class="btn" href="#regolamento">Leggi il regolamento</a></div></div>`));
+  document.addEventListener('click', e => { if (e.target.closest('.bl-btn')) { const dentro = utente && utente.scad > Date.now(); dentro && LS.get('gu-token', null)?.scad > Date.now() ? verifica().then(() => toast(membro() ? 'Accesso confermato ✓' : 'Ruolo non ancora presente')) : accedi(); } });
+  // finestra «Il tuo accesso»
+  const modale = document.createElement('div'); modale.className = 'acc-modale'; modale.hidden = true; document.body.appendChild(modale);
+  function chiudiModale() { modale.hidden = true; }
+  $('#account').addEventListener('click', () => {
+    if (!(utente && utente.scad > Date.now())) return accedi();
+    const ok = membro();
+    modale.innerHTML = `<div class="acc-box" role="dialog" aria-modal="true" aria-label="Il tuo accesso"><button class="acc-x" type="button" aria-label="Chiudi">✕</button>
+      <div class="acc-chi">${utente.avatar ? `<img src="${esc(utente.avatar)}" alt="">` : ''}<span>Accesso come <b>${esc(utente.nome)}</b></span></div>
+      <h2>Il tuo accesso</h2><div class="acc-liv ${ok ? 'ok' : 'no'}"><i></i>${ok ? 'Membro Gang Unit' : 'Visitatore'}</div>
+      <p>${ok ? 'Hai il ruolo Gang Unit: puoi usare Strumenti ed Esami.' : 'Puoi leggere il regolamento e candidarti ai bandi. Strumenti ed Esami sono per chi ha il ruolo Gang Unit.'}</p>
+      <div class="b-az">${ok ? '<a class="btn p" href="#strumenti">Apri gli strumenti</a>' : '<button class="btn p" type="button" data-ricontrolla>Controlla di nuovo</button>'}<button class="btn" type="button" data-esci>Esci da Discord</button><button class="btn" type="button" data-chiudi-m>Chiudi</button></div></div>`;
+    modale.hidden = false;
+  });
+  modale.addEventListener('click', e => {
+    if (e.target === modale || e.target.closest('.acc-x,[data-chiudi-m]') || e.target.closest('a')) return chiudiModale();
+    if (e.target.closest('[data-esci]')) return esci();
+    if (e.target.closest('[data-ricontrolla]')) { chiudiModale(); verifica().then(() => toast(membro() ? 'Accesso confermato ✓' : 'Ruolo non ancora presente')); }
+  });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && !modale.hidden) chiudiModale(); });
 
   /* ═════════════ SEZIONI (home, regolamento, strumenti, bandi, esami) ═════════════ */
   const VISTE = $$('.vista'), nav = $('#nav');
@@ -1722,7 +1929,7 @@ const GU = {
 
   // ── codici radio (presi dalla tabella del regolamento, art. 5.1) ──
   const CODICI = $$('#radio tbody tr').map(tr => [tr.children[0].textContent.trim(), tr.children[1].textContent.trim(), tr.dataset.t]);
-  const NOMI_T = { stato: 'Stato', intervento: 'Intervento', emergenza: 'Emergenza', gang: 'Gang Unit' };
+  const NOMI_T = { stato: 'Ten code · stato', intervento: 'Ten code · intervento', emergenza: 'Emergenza', car: 'Car code', status: 'Status code', gang: 'Gang Unit' };
   $('#s-radio tbody').innerHTML = CODICI.map(([c, s, t]) => `<tr data-t="${t}"><td class="cod">${esc(c)}</td><td>${esc(s)}</td><td><span class="pill ${t}">${NOMI_T[t]}</span></td></tr>`).join('');
   let filtroS = 'tutti';
   const filtraS = () => { const v = $('#s-rq').value.trim().toLowerCase(); $$('#s-radio tbody tr').forEach(tr => { tr.hidden = !((filtroS === 'tutti' || tr.dataset.t === filtroS) && (!v || tr.textContent.toLowerCase().includes(v))); }); $$('.filtro2').forEach(b => b.setAttribute('aria-pressed', b.dataset.f === filtroS)); };
@@ -1747,7 +1954,7 @@ const GU = {
 
   // ── prontuario (i passi vengono dagli articoli del regolamento) ──
   const PRONTUARIO = [
-    ['Scontro tra gang · 10-71', '#ff4d5e', 'art-4-7', ['Fermati a distanza: la prima unità non entra', 'Comunica in radio soggetti, armi e vie di fuga', 'La centrale porta la minaccia almeno a Giallo', 'Entra solo con 4 agenti e un responsabile', 'Metti in sicurezza l\'area e chiama l\'EMS', 'Ferma tutti i presenti armati', 'Registra armi e bossoli con /arma sequestra']],
+    ['Scontro tra gang · G-3', '#ff4d5e', 'art-4-7', ['Fermati a distanza: la prima unità non entra', 'Comunica in radio soggetti, armi e vie di fuga', 'La centrale porta la minaccia almeno a Giallo', 'Entra solo con 4 agenti e un responsabile', 'Metti in sicurezza l\'area e chiama l\'EMS', 'Ferma tutti i presenti armati', 'Registra armi e bossoli con /arma sequestra']],
     ['Arresto', '#3d7bff', 'art-4-3', ['Metti in sicurezza il soggetto e ammanettalo', 'Comunica arresto e motivo', 'Leggi i diritti Miranda (fino a tre volte)', 'Prima perquisizione sul posto', 'Trasporto in centrale e seconda perquisizione', 'Rapporto d\'arresto entro fine turno']],
     ['Fermo', '#7cb0ff', 'art-4-2', ['Comunica il motivo del fermo', 'Chiedi il documento', 'Accetta la perquisizione: trasporto senza manette', 'Rifiuta: trasporto ammanettato in centrale', 'Il fermato non va mai in cella', 'Finiti gli accertamenti: rilascio o arresto']],
     ['Traffic stop · 10-55', '#ffc94a', 'art-4-5', ['Comunica targa, modello e posizione', 'Ferma il veicolo in un punto sicuro, volante sfalsata', 'Avvicinati dal lato guida, collega in copertura', 'Chiedi documenti e motivo del viaggio', 'Controlla il veicolo solo con consenso o fondato sospetto']],
@@ -1862,14 +2069,17 @@ const GU = {
     ['Chi può autorizzare un raid in un covo?', ['Il Capitano o la Procura con un mandato', 'Un Sergente II', 'Un Agente III', 'Chiunque abbia visto il covo'], 'art-4-8'],
     ['Sotto quale velocità è ammessa la manovra PIT?', ['150 km/h', '100 km/h', '200 km/h', 'A qualsiasi velocità'], 'art-4-6'],
     ['Con livello di minaccia ROSSO, le Reclute…', ['non entrano nei territori ostili', 'guidano le pattuglie', 'escono da sole', 'partecipano ai raid'], 'art-3-2'],
-    ['Arrivi per primo su un 10-71 tra gang. Cosa fai?', ['Ti fermi a distanza e comunichi soggetti, armi e vie di fuga', 'Entri subito e fermi tutti', 'Te ne vai', 'Spari in aria'], 'art-4-7'],
+    ['Arrivi per primo su un G-3, scontro tra gang. Cosa fai?', ['Ti fermi a distanza e comunichi soggetti, armi e vie di fuga', 'Entri subito e fermi tutti', 'Te ne vai', 'Spari in aria'], 'art-4-7'],
     ['Quante volte ripeti al massimo i diritti Miranda?', ['Tre', 'Una', 'Cinque', 'Finché non risponde'], 'art-4-3'],
     ['Una gang di Classe A si colpisce…', ['solo con operazioni autorizzate dal Capitano o dall\'Alto Comando', 'con controlli ordinari', 'con l\'ok di un Sergente', 'appena possibile'], 'art-3-3'],
     ['Dopo quanti giorni senza servizio vieni segnalato all\'Alto Comando?', ['10', '3', '5', '30'], 'art-6-4'],
     ['Un fermato rifiuta la perquisizione. Come lo trasporti?', ['Ammanettato in centrale per gli accertamenti', 'Non lo trasporti', 'Direttamente in cella', 'Senza manette sul sedile davanti'], 'art-4-2'],
     ['Cosa significa il codice G-6?', ['Informatore sul posto, non intervenire', 'Raduno di gang armate', 'Covo individuato', 'Fine turno'], 'art-5-1'],
-    ['Cosa significa 10-99?', ['Agente in pericolo, tutte le unità', 'Rapina in corso', 'Fine turno', 'Inseguimento'], 'art-5-1'],
-    ['Quale Codice di risposta usi per avvicinarti in silenzio a un covo?', ['Codice 5', 'Codice 1', 'Codice 3', 'Codice 4'], 'art-5-2'],
+    ['Cosa significa 10-99?', ['Rapina a mano armata', 'Agente a terra', 'Fine turno', 'Inseguimento in corso'], 'art-5-1'],
+    ['Cosa significa 10-100?', ['Agente a terra', 'Rapina a mano armata', 'Rientro in centrale', 'Spaccio'], 'art-5-1'],
+    ['Qual è lo Status di una pattuglia operativa e disponibile?', ['Status 1', 'Status 2', 'Status 3', 'Codice 4'], 'art-5-2'],
+    ['Pericolo accertato, sirene e lampeggianti attivi: che car code è?', ['Codice 3', 'Codice 1', 'Codice 2', 'Codice 0'], 'art-5-2'],
+    ['Cosa indica il Codice 0?', ['Attacco alle istituzioni o rapimento di pubblico ufficiale', 'Situazione sotto controllo', 'Pattuglia disponibile', 'Fine turno'], 'art-5-2'],
     ['Qual è la squadra minima per un raid?', ['4 agenti più il responsabile', '2 agenti', '6 agenti senza responsabile', 'Un agente sotto copertura'], 'art-4-8'],
     ['Entro quando va scritto il rapporto d\'operazione?', ['Entro 24 ore', 'Entro fine settimana', 'Non serve', 'Entro un\'ora'], 'art-4-8'],
     ['Un superiore ti dà un ordine palesemente illegittimo. Cosa fai?', ['Lo rifiuti con calma e lo segnali all\'Alto Comando', 'Lo esegui comunque', 'Lo riferisci alla gang', 'Lasci la Gang Unit'], 'art-2-2'],
@@ -1954,6 +2164,34 @@ const GU = {
     let t = 0; (function c() { x.clearRect(0, 0, cv.width, cv.height); for (const p of P) { p.vy += .35; p.x += p.vx; p.y += p.vy; p.r += .2; x.save(); x.translate(p.x, p.y); x.rotate(p.r); x.fillStyle = p.c; x.fillRect(-4, -2, 8, 4); x.restore(); } if (++t < 150) requestAnimationFrame(c); else cv.remove(); })();
   }
 
+  /* ═════════════ HOME: bando, capitoli, Alto Comando ═════════════ */
+  function homeBando() {
+    const b = GU.bandi.find(x => statoB(x) === 'aperto') || GU.bandi.find(x => statoB(x) === 'arrivo'), box = $('#bando-evid');
+    if (!b) { box.hidden = true; return; }
+    const st = statoB(b), cd = st === 'aperto' ? b.chiusura : b.apertura;
+    box.hidden = false; box.dataset.stato = st;
+    box.innerHTML = `<div><small><i></i>Bando ${st === 'aperto' ? 'aperto' : 'in arrivo'} · ${esc(b.numero)}</small><b>${esc(b.titolo)}</b><span>${esc(b.posti)} posti · candidature sul sito, arrivano su Discord</span></div><div class="be-cd"><small>${st === 'aperto' ? 'Chiude tra' : 'Apre tra'}</small><b data-cd="${esc(cd)}">${manca(+new Date(cd) - Date.now())}</b></div><a class="btn p" href="#bando-${esc(b.id)}">Leggi e candidati →</a>`;
+  }
+  homeBando();
+  function homeCapitoli() {
+    const letti = new Set(LS.get('gu-letti', []));
+    $$('.cap-a[data-cap]').forEach(a => { const arts = $$('#' + a.dataset.cap + ' .art'), n = arts.filter(x => letti.has(x.id)).length;
+      $('.n-art', a).textContent = `${arts.length} articoli`; $('.barretta i', a).style.width = (arts.length ? n / arts.length * 100 : 0) + '%';
+      $('.stato', a).textContent = n === arts.length && n ? '✓ letto' : n ? `${n}/${arts.length} letti` : 'da leggere'; a.classList.toggle('fatto', n === arts.length && n > 0); });
+  }
+  homeCapitoli();
+  document.addEventListener('click', e => { if (e.target.closest('.leggi button')) setTimeout(homeCapitoli, 50); });
+  addEventListener('hashchange', () => { if (vista === 'home') homeCapitoli(); });
+  $('#ac-lista').innerHTML = (GU.comando || []).map(c => `<article class="ac-card">
+      <div class="ac-banner"${c.banner ? ` style="background-image:url('${esc(c.banner)}')"` : ''}></div>
+      <div class="ac-av"><img src="${esc(c.avatar || $('.marchio img').src)}" alt="" onerror="this.src=document.querySelector('.marchio img').src"><span class="ac-stelle">${'★'.repeat(c.stelle || 1)}</span></div>
+      <small class="ac-sig">${esc(c.sigla)} · Alto Comando</small><h4>${esc(c.grado)}</h4><b class="ac-nome">${esc(c.nome)}</b><span class="ac-ut">@${esc(c.utente)}</span>
+      <p>${esc(c.descr)}</p>
+      <div class="ac-az">${c.id ? `<a class="btn piccolo" href="https://discord.com/users/${esc(c.id)}" target="_blank" rel="noopener">Profilo Discord ↗</a><button type="button" class="btn piccolo" data-menz="${esc(c.id)}">Copia menzione</button>` : ''}</div>
+    </article>`).join('');
+  $('#ac-lista').addEventListener('click', e => { const b = e.target.closest('[data-menz]'); if (b) copia(`<@${b.dataset.menz}>`); });
+
+  applicaAccesso(); verifica();
   vai();
 })();
 
@@ -2161,12 +2399,12 @@ const GU = {
       if (k === '⌫') buf = buf.slice(0, -1);
       else if (k === 'G') buf = 'G-';
       else if (buf.startsWith('G-')) buf = (buf + k).slice(0, 3);
-      else buf = (cifre + k).slice(0, 4);
+      else buf = (cifre + k).slice(0, 5);
       if (k === '⌫' && !buf.startsWith('G-')) buf = cifre.slice(0, -1);
       if (!buf.startsWith('G-')) {
         cifre = buf.replace(/\D/g, '');
         // "1" e "10" sono a metà; "1071" o "71" diventano 10-71
-        buf = !cifre ? '' : '10'.startsWith(cifre) ? cifre : cifre.startsWith('10') ? '10-' + cifre.slice(2, 4) : '10-' + cifre.slice(0, 2);
+        buf = !cifre ? '' : '10'.startsWith(cifre) ? cifre : cifre.startsWith('10') ? '10-' + cifre.slice(2, 5) : '10-' + cifre.slice(0, 3);
       } else cifre = '';
       mostra(buf);
     }
@@ -2174,7 +2412,7 @@ const GU = {
     $('#sp-ptt').addEventListener('click', () => { if (buf) mostra(buf, true); else avviso('Prima digita un codice'); });
     $('#sp-ch-btn').addEventListener('click', () => { ch = (ch + 1) % CANALI.length; $('#sp-ch').textContent = CANALI[ch][0]; $('#sp-freq').textContent = CANALI[ch][1]; fruscio(.18, .04); });
     $('#sp-muto').addEventListener('click', e => { muto = !muto; LS.set('gu-sp-muto', muto); e.currentTarget.textContent = muto ? '🔇' : '🔊'; e.currentTarget.setAttribute('aria-pressed', muto); });
-    const RAPIDI = ['10-4', '10-20', '10-23', '10-32', '10-71', '10-80', '10-99', 'G-3', 'G-5'];
+    const RAPIDI = ['10-4', '10-20', '10-6', '10-10', '10-80', '10-100', 'Codice 0', 'Status 1', 'G-3'];
     const rapidi = () => { $('#sp-rapidi').innerHTML = RAPIDI.map(c => trova(c)).filter(Boolean).map(x => `<button type="button" data-rc="${esc(x.c)}" class="sp-rc ${esc(x.t)}"><b>${esc(x.c)}</b><span>${esc(x.s)}</span></button>`).join(''); };
     rapidi(); setTimeout(rapidi, 600);
     $('#sp-rapidi').addEventListener('click', e => { const b = e.target.closest('[data-rc]'); if (b) { buf = b.dataset.rc; cifre = buf.startsWith('G') ? '' : buf.replace(/\D/g, ''); mostra(buf, true); } });
