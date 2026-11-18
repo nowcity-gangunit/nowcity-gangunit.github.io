@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- versione 2026-11-18 15:10 -->
+<!-- versione 2026-11-18 15:40 -->
 <title>Gang Unit · NOW V4</title>
 <meta name="description" content="Regolamento e manuale operativo della Gang Unit del Los Santos Police Department · NOW V4 Roleplay.">
 <meta property="og:title" content="Regolamento Gang Unit · NOW V4">
@@ -1114,6 +1114,55 @@ html.gx-intro-on body{overflow:hidden}
 .gx-mbox .nota{color:var(--tenue);font-size:13.5px;text-align:center;max-width:52ch;margin:0}
 @media (max-width:520px){.gx-card .corpo{grid-template-columns:34% 1fr;gap:12px;top:64px}.gx-card dd{font-size:13px}.gx-card .chip{display:none}}
 #sp-muto{display:none!important}
+/* ── SFONDO VIVO NEL BANNER ── */
+.gx-vivo{display:none}
+@media (min-width:641px){
+  .gx-vivo{display:block;position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+  .gx-vivo canvas{position:absolute;inset:0;width:100%;height:100%;mix-blend-mode:normal!important}
+  .gx-faro{position:absolute;top:-10%;left:0;width:34%;height:140%;transform-origin:50% 0;background:conic-gradient(from 168deg at 50% 0,transparent 0deg,rgba(220,235,255,.0) 4deg,rgba(220,235,255,.16) 12deg,rgba(220,235,255,.0) 20deg,transparent 24deg);filter:blur(6px);mix-blend-mode:screen;opacity:0;animation:gx-faro 16s ease-in-out infinite}
+  @keyframes gx-faro{0%{transform:translateX(-30%) rotate(18deg);opacity:0}8%{opacity:1}45%{transform:translateX(160%) rotate(-14deg);opacity:1}55%{opacity:0}100%{transform:translateX(160%) rotate(-14deg);opacity:0}}
+  .gx-elico{position:absolute;top:6%;left:0;width:64px;height:22px;opacity:0;animation:gx-elico 16s ease-in-out infinite;filter:drop-shadow(0 0 4px rgba(0,0,0,.8))}
+  .gx-elico svg{width:100%;height:100%}
+  .gx-elico i{position:absolute;left:24px;top:14px;width:4px;height:4px;border-radius:50%;background:#ff3b4f;box-shadow:0 0 8px #ff3b4f;animation:gx-rec 1s steps(1) infinite}
+  @keyframes gx-elico{0%{transform:translateX(-10%);opacity:0}6%{opacity:.9}48%{transform:translateX(calc(min(1320px,100vw) * .92));opacity:.9}54%{opacity:0}100%{opacity:0;transform:translateX(calc(min(1320px,100vw) * .92))}}
+  .gx-sirene{position:absolute;left:0;right:0;bottom:0;height:42%;background:radial-gradient(40% 70% at 18% 100%,rgba(255,40,64,.22),transparent 70%),radial-gradient(40% 70% at 82% 100%,rgba(40,100,255,.22),transparent 70%);mix-blend-mode:screen;animation:gx-sirene 1.4s steps(1) infinite}
+  @keyframes gx-sirene{50%{background:radial-gradient(40% 70% at 18% 100%,rgba(40,100,255,.2),transparent 70%),radial-gradient(40% 70% at 82% 100%,rgba(255,40,64,.2),transparent 70%)}}
+}
+@media (prefers-reduced-motion:reduce){.gx-faro,.gx-elico{display:none}}
+
+/* ── IMPRONTA DIGITALE ── */
+#gx-intro .impronta{position:relative;margin-top:6px;width:118px;height:118px;border-radius:26px;border:0;background:radial-gradient(circle at 50% 50%,rgba(242,185,56,.12),rgba(5,9,19,.7) 70%);cursor:pointer;opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+#gx-intro .impronta.pronto{opacity:1;transform:none}
+#gx-intro .impronta:before{content:"";position:absolute;inset:-2px;border-radius:28px;padding:1.5px;background:conic-gradient(from var(--gx-a,0deg),#f2b938,#ff3b4f,#3d7bff,#f2b938);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:gx-bordo 3s linear infinite}
+#gx-intro .impronta svg{position:absolute;inset:14px;width:90px;height:90px}
+#gx-intro .impronta .base path{stroke:rgba(200,215,240,.28)}
+#gx-intro .impronta .pieno path{stroke:#ffd76a;filter:drop-shadow(0 0 4px rgba(242,185,56,.8))}
+#gx-intro .impronta .riga{position:absolute;left:12px;right:12px;height:2px;top:50%;background:linear-gradient(90deg,transparent,#35d07f,transparent);box-shadow:0 0 12px #35d07f;opacity:0}
+#gx-intro .impronta.giu .riga{opacity:1;animation:gx-rigaS .7s ease-in-out infinite alternate}
+@keyframes gx-rigaS{from{top:14px}to{top:102px}}
+#gx-intro .impronta.giu{box-shadow:0 0 40px rgba(242,185,56,.35)}
+#gx-intro .impronta.fatto .pieno path{stroke:#35d07f;filter:drop-shadow(0 0 6px rgba(53,208,127,.9))}
+#gx-intro .imp-txt{margin-top:12px;font:800 12px var(--f-mono);letter-spacing:.24em;text-transform:uppercase;color:#ffe08a;opacity:0;transition:opacity .5s .2s}
+#gx-intro .impronta.pronto ~ .imp-txt{opacity:1}
+#gx-intro .imp-bar{width:180px;height:3px;margin:10px auto 0;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden;opacity:0;transition:opacity .4s}
+#gx-intro .impronta.pronto ~ .imp-bar{opacity:1}
+#gx-intro .imp-bar b{display:block;height:100%;width:0;background:linear-gradient(90deg,#f2b938,#35d07f)}
+#gx-intro.vai .impronta,#gx-intro.vai .impronta.pronto ~ .imp-txt,#gx-intro.vai .impronta.pronto ~ .imp-bar{opacity:0;pointer-events:none;transition:opacity .3s .5s}
+#gx-intro .log .id{color:#ffe08a}
+#gx-intro .log .id b{color:#35d07f}
+
+/* ── GLITCH SUL TITOLO ── */
+#gx-intro .gl{position:relative;display:inline-block}
+#gx-intro .gl > span{position:absolute;inset:0;pointer-events:none;-webkit-background-clip:text;background-clip:text;color:transparent}
+#gx-intro .gl .g1{background:linear-gradient(#ff2a44,#ff2a44);-webkit-background-clip:text;background-clip:text;mix-blend-mode:screen;animation:gx-gl1 1.6s steps(1) forwards,gx-gl1b 7s 3s steps(1) infinite}
+#gx-intro .gl .g2{background:linear-gradient(#2ee6ff,#2ee6ff);-webkit-background-clip:text;background-clip:text;mix-blend-mode:screen;animation:gx-gl2 1.6s steps(1) forwards,gx-gl2b 7s 3s steps(1) infinite}
+#gx-intro .tit.gl{animation:gx-glT 1.6s steps(1) forwards}
+@keyframes gx-gl1{0%{transform:translate(-8px,2px);clip-path:inset(10% 0 60% 0)}10%{transform:translate(6px,-3px);clip-path:inset(55% 0 20% 0)}20%{transform:translate(-4px,1px);clip-path:inset(30% 0 40% 0)}35%{transform:translate(9px,0);clip-path:inset(70% 0 5% 0)}50%{transform:translate(-3px,2px);clip-path:inset(5% 0 80% 0)}65%{transform:translate(2px,0);clip-path:inset(45% 0 45% 0)}80%{transform:translate(-1px,0);clip-path:inset(0 0 95% 0)}100%{transform:none;clip-path:inset(0 0 100% 0)}}
+@keyframes gx-gl2{0%{transform:translate(8px,-2px);clip-path:inset(60% 0 10% 0)}10%{transform:translate(-6px,3px);clip-path:inset(15% 0 60% 0)}20%{transform:translate(5px,-1px);clip-path:inset(40% 0 30% 0)}35%{transform:translate(-9px,0);clip-path:inset(5% 0 75% 0)}50%{transform:translate(4px,-2px);clip-path:inset(80% 0 2% 0)}65%{transform:translate(-2px,0);clip-path:inset(35% 0 55% 0)}80%{transform:translate(1px,0);clip-path:inset(90% 0 0 0)}100%{transform:none;clip-path:inset(0 0 100% 0)}}
+@keyframes gx-glT{0%{opacity:.4;transform:skewX(-8deg)}10%{opacity:1;transform:skewX(6deg)}20%{opacity:.6;transform:none}35%{opacity:1;transform:skewX(-3deg)}50%{opacity:.85}65%{transform:skewX(1deg)}100%{opacity:1;transform:none}}
+@keyframes gx-gl1b{0%,95%{clip-path:inset(0 0 100% 0);transform:none}96%{clip-path:inset(40% 0 35% 0);transform:translate(-6px,0)}98%{clip-path:inset(70% 0 10% 0);transform:translate(5px,0)}}
+@keyframes gx-gl2b{0%,95%{clip-path:inset(0 0 100% 0);transform:none}96%{clip-path:inset(20% 0 60% 0);transform:translate(6px,0)}98%{clip-path:inset(55% 0 25% 0);transform:translate(-4px,0)}}
+@media (prefers-reduced-motion:reduce){#gx-intro .gl > span{display:none}}
 </style>
 </head>
 <body id="top">
@@ -2869,6 +2918,11 @@ const GU = {
   const poco = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const H = document.documentElement;
 
+  const CFG = (typeof GU !== 'undefined' && GU.db) || {};
+  // legge la sessione salvata dal login principale (non crea un secondo accesso)
+  const CHIAVE_SESS = () => { try { return 'sb-' + new URL(CFG.url).hostname.split('.')[0] + '-auth-token'; } catch { return ''; } };
+  function sessione() { try { const v = JSON.parse(localStorage.getItem(CHIAVE_SESS()) || 'null'); return v?.access_token ? v : (v?.currentSession || null); } catch { return null; } }
+
   /* ═════ GRADI: elenco e distintivi ═════ */
   const GRADI = [
     { f: 'Agenti', c: '#5b8cff', g: [['Recluta', 'RCT'], ['Agente I', 'AG1'], ['Agente II', 'AG2'], ['Agente III', 'AG3']] },
@@ -2966,6 +3020,8 @@ const GU = {
   const intro = H.classList.contains('gx-intro-on');
   if (intro) {
     const BANNER = $('.hero-bg')?.src || '';
+    const DITO = ['M20 50c-3-5-4-10-4-15 0-9 7-16 16-16s16 7 16 16', 'M26 56c-3-5-5-12-5-19 0-6 5-11 11-11s11 5 11 11c0 4 0 8-1 12', 'M32 58c-3-6-5-13-5-21a5 5 0 0 1 10 0c0 7 2 13 5 18', 'M13 42c-1-3-1-5-1-8 0-11 9-20 20-20 6 0 11 2 15 6', 'M50 24c1.5 3 2 6 2 10 0 6-1 10-2 14', 'M18 14c4-3 9-5 14-5s10 2 14 5', 'M38 57c-1-3-2-7-2-11'];
+    const dito = (cl) => `<svg class="${cl}" viewBox="0 0 64 64" fill="none" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">${DITO.map(d => `<path d="${d}" pathLength="1" ${cl === 'pieno' ? 'stroke-dasharray="1" stroke-dashoffset="1"' : ''}/>`).join('')}</svg>`;
     const el = document.createElement('div'); el.id = 'gx-intro'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-label', 'Benvenuto nella Gang Unit');
     el.innerHTML = `<div class="sf" style="background-image:url('${BANNER}')" aria-hidden="true"></div>
       <div class="amb r" aria-hidden="true"></div><div class="amb b" aria-hidden="true"></div><div class="scan" aria-hidden="true"></div><div class="vel" aria-hidden="true"></div>
@@ -2977,43 +3033,113 @@ const GU = {
         <div class="dist"><div class="radar"></div><span class="onda"></span><span class="onda"></span>
           <svg class="anello" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="gxCerchio" d="M100,100 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"/></defs><circle cx="100" cy="100" r="96"/><text><textPath href="#gxCerchio" textLength="548" lengthAdjust="spacing">Gang Unit · NOW V4 · Los Santos Police Dept · </textPath></text></svg>
           <img src="${esc(LOGO())}" alt="Distintivo Gang Unit NOW V4"><span class="rifl"></span></div>
-        <h1 class="tit" data-t="Gang Unit">Gang Unit</h1>
+        <h1 class="tit gl" data-t="Gang Unit">Gang Unit<span class="g1" aria-hidden="true">Gang Unit</span><span class="g2" aria-hidden="true">Gang Unit</span></h1>
         <div class="sotto">NOW V4 · LSPD</div>
         <div class="log" aria-live="polite"></div>
-        <button class="entra" type="button">Entra <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-        <div class="hint">oppure premi <kbd>Invio</kbd></div>
+        <button class="impronta" type="button" aria-label="Tieni premuto sull'impronta per entrare">${dito('base')}${dito('pieno')}<span class="riga"></span></button>
+        <div class="imp-txt">Tieni premuto per la scansione</div>
+        <div class="imp-bar" aria-hidden="true"><b></b></div>
       </div>
       <div class="ok" aria-hidden="true">Accesso autorizzato</div>
       <button class="salta" type="button">Salta ✕</button>`;
     document.body.appendChild(el);
     const ora = $('.gx-ora', el), tick = () => { ora.textContent = new Date().toLocaleTimeString('it-IT'); };
     tick(); const tOra = setInterval(tick, 1000);
-    // righe del terminale scritte una alla volta
-    const RIGHE = ['Connessione al server NOW V4', 'Verifica distintivo', 'Canale radio cifrato', 'Archivio gang e fascicoli'];
-    const log = $('.log', el), btn = $('.entra', el);
+    // chi sta entrando (dalla sessione Discord già salvata)
+    const chi = (async () => {
+      const ss = sessione(), u = ss?.user; if (!u || !CFG.url) return null;
+      const md = u.user_metadata || {}, id = md.provider_id || md.sub, nome = md.custom_claims?.global_name || md.full_name || md.name || 'Utente';
+      try {
+        const ctl = new AbortController(); setTimeout(() => ctl.abort(), 1800);
+        const r = await fetch(`${CFG.url}/rest/v1/membri?select=livello,nome&discord_id=eq.${encodeURIComponent(id)}`, { headers: { apikey: CFG.chiave, Authorization: `Bearer ${ss.access_token}` }, signal: ctl.signal });
+        const riga = r.ok ? (await r.json())[0] : null;
+        if (!riga) return { nome, livello: null };
+        const x = leggiNick(riga.nome, riga.livello);
+        return { nome: x.nome, grado: x.grado, livello: riga.livello };
+      } catch { return { nome, livello: null }; }
+    })();
+    const log = $('.log', el), imp = $('.impronta', el), barra = $('.imp-bar b', el), testoImp = $('.imp-txt', el);
+    const aspetta = ms => new Promise(r => setTimeout(r, ms));
+    async function scrivi(t, fine) {
+      const d = document.createElement('div'); log.appendChild(d);
+      for (let i = 1; i <= t.length; i++) { d.innerHTML = '&gt; ' + esc(t.slice(0, i)) + '<span class="cur"></span>'; await aspetta(15); }
+      await aspetta(110); d.innerHTML = '&gt; ' + esc(t) + (fine || ' ........ <b>OK</b>'); return d;
+    }
     (async () => {
-      const aspetta = ms => new Promise(r => setTimeout(r, ms));
       await aspetta(350);
-      for (const t of RIGHE) {
-        const d = document.createElement('div'); log.appendChild(d);
-        for (let i = 1; i <= t.length; i++) { d.innerHTML = '&gt; ' + esc(t.slice(0, i)) + '<span class="cur"></span>'; await aspetta(16); }
-        await aspetta(120); d.innerHTML = '&gt; ' + esc(t) + ' ........ <b>OK</b>';
+      await scrivi('Connessione al server NOW V4');
+      await scrivi('Lettura credenziali Discord');
+      const c = await chi;
+      if (c && c.livello) {
+        const ab = String(c.grado || '').replace(/^Vice Comandante$/, 'V.Comandante');
+        (await scrivi(`Identificato: ${ab} ${c.nome}`, ' <b>✓</b>')).classList.add('id');
+        (await scrivi(`Livello: ${c.livello === 'comando' ? 'Accesso Alto Comando' : 'Accesso Gang Unit'}`, ' <b>✓</b>')).classList.add('id');
+      } else if (c) {
+        (await scrivi(`Identificato: ${c.nome}`, ' <b>✓</b>')).classList.add('id');
+        await scrivi('Livello: Visitatore · area pubblica', ' <b>✓</b>');
+      } else {
+        await scrivi('Canale radio cifrato');
+        await scrivi('Ospite · accesso pubblico', ' <b>✓</b>');
       }
-      btn.classList.add('pronto'); btn.focus({ preventScroll: true });
+      imp.classList.add('pronto'); imp.focus({ preventScroll: true });
     })();
     let finito = false;
     const chiudi = () => { if (finito) return; finito = true; clearInterval(tOra); try { sessionStorage.setItem('gx-intro', '1'); } catch {} el.classList.add('via'); H.classList.remove('gx-intro-on'); setTimeout(() => el.remove(), 800); };
     const parti = () => { if (el.classList.contains('vai')) return; el.classList.add('vai'); setTimeout(chiudi, 2300); };
-    btn.addEventListener('click', parti);
+    // scansione impronta: tieni premuto ~1,3 secondi
+    const tratti = $$('.pieno path', el); let prog = 0, giu = false, ultimo = 0, raf = 0;
+    const disegna = () => { tratti.forEach((p, i) => p.setAttribute('stroke-dashoffset', Math.max(0, 1 - Math.min(1, prog * 1.25 - i * .04)).toFixed(3))); barra.style.width = (prog * 100).toFixed(1) + '%'; };
+    function passo(t) {
+      const dt = ultimo ? t - ultimo : 16; ultimo = t;
+      prog = giu ? Math.min(1, prog + dt / 1300) : Math.max(0, prog - dt / 500);
+      disegna();
+      if (prog >= 1) { imp.classList.remove('giu'); imp.classList.add('fatto'); testoImp.textContent = 'Impronta riconosciuta'; setTimeout(parti, 250); return; }
+      if (giu || prog > 0) raf = requestAnimationFrame(passo); else raf = 0;
+    }
+    const inizia = (e) => { if (!imp.classList.contains('pronto') || imp.classList.contains('fatto')) return; e?.preventDefault(); giu = true; imp.classList.add('giu'); testoImp.textContent = 'Scansione in corso…'; if (!raf) { ultimo = 0; raf = requestAnimationFrame(passo); } };
+    const ferma = () => { if (!giu) return; giu = false; imp.classList.remove('giu'); if (prog < 1) testoImp.textContent = 'Tieni premuto per la scansione'; if (!raf) { ultimo = 0; raf = requestAnimationFrame(passo); } };
+    imp.addEventListener('pointerdown', e => { imp.setPointerCapture?.(e.pointerId); inizia(e); });
+    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(ev => imp.addEventListener(ev, ferma));
+    imp.addEventListener('contextmenu', e => e.preventDefault());
     $('.salta', el).addEventListener('click', chiudi);
-    addEventListener('keydown', e => { if (finito) return; if (e.key === 'Escape') chiudi(); else if (e.key === 'Enter') { e.preventDefault(); parti(); } });
+    addEventListener('keydown', e => { if (finito) return; if (e.key === 'Escape') chiudi(); else if ((e.key === 'Enter' || e.key === ' ') && !e.repeat) { e.preventDefault(); inizia(); } });
+    addEventListener('keyup', e => { if (e.key === 'Enter' || e.key === ' ') ferma(); });
+  }
+
+  /* ═════ SFONDO VIVO NEL BANNER: pioggia, luci della città, elicottero con faro ═════ */
+  const hero = $('#v-home .hero');
+  if (hero) {
+    const v = document.createElement('div'); v.className = 'gx-vivo'; v.setAttribute('aria-hidden', 'true');
+    v.innerHTML = `<canvas></canvas><div class="gx-sirene"></div><div class="gx-faro"></div><div class="gx-elico"><svg viewBox="0 0 64 22"><path d="M8 3h46" stroke="#0a0f1a" stroke-width="2"/><path d="M31 3v4" stroke="#0a0f1a" stroke-width="2"/><path d="M14 12c0-3 4-5 12-5h8c5 0 8 2 9 5l14 1v2l-14 2c-1 2-4 3-8 3H24c-6 0-10-3-10-8z" fill="#0a0f1a"/><path d="M44 17l6 3" stroke="#0a0f1a" stroke-width="2"/></svg><i></i></div>`;
+    (hero.querySelector('.tag') || null) ? hero.insertBefore(v, hero.querySelector('.tag')) : hero.appendChild(v);
+    const cv = $('canvas', v), ctx = cv.getContext('2d'); let W = 0, Ht = 0, gocce = [], luci = [];
+    const dim = () => { const r = cv.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2); W = cv.width = Math.max(1, r.width * d); Ht = cv.height = Math.max(1, r.height * d); gocce = Array.from({ length: Math.round(W / 9) }, () => goccia(true)); };
+    const goccia = (ovunque) => ({ x: Math.random() * W * 1.2, y: ovunque ? Math.random() * Ht : -20, l: (8 + Math.random() * 16) * (W / 1300), v: (9 + Math.random() * 7) * (W / 1300), a: .12 + Math.random() * .25 });
+    const luce = () => { const dx = Math.random() < .5; return { x: dx ? -40 : W + 40, y: Ht * (.78 + Math.random() * .17), v: (dx ? 1 : -1) * (1.2 + Math.random() * 2.2) * (W / 1300), c: dx ? '255,240,215' : '255,50,60', r: (2.5 + Math.random() * 3.5) * (W / 1300) }; };
+    dim(); addEventListener('resize', dim);
+    let vis = true; if ('IntersectionObserver' in window) new IntersectionObserver(x => { vis = x[0].isIntersecting; }).observe(hero);
+    (function ciclo() {
+      requestAnimationFrame(ciclo);
+      if (!vis || document.hidden || poco || !W || getComputedStyle(v).display === 'none') return;
+      ctx.clearRect(0, 0, W, Ht);
+      // luci delle macchine che passano in fondo
+      if (luci.length < 7 && Math.random() < .03) luci.push(luce());
+      luci = luci.filter(L => L.x > -60 && L.x < W + 60);
+      for (const L of luci) {
+        L.x += L.v; const g = ctx.createRadialGradient(L.x, L.y, 0, L.x, L.y, L.r * 4);
+        g.addColorStop(0, `rgba(${L.c},.7)`); g.addColorStop(1, `rgba(${L.c},0)`); ctx.fillStyle = g; ctx.fillRect(L.x - L.r * 4, L.y - L.r * 4, L.r * 8, L.r * 8);
+        ctx.fillStyle = `rgba(${L.c},.18)`; ctx.fillRect(Math.min(L.x, L.x - L.v * 26), L.y - 1, Math.abs(L.v * 26), 2);
+      }
+      // pioggia leggera
+      ctx.lineCap = 'round';
+      for (const p of gocce) {
+        p.x -= p.v * .28; p.y += p.v; if (p.y > Ht + 20 || p.x < -20) Object.assign(p, goccia(false));
+        ctx.strokeStyle = `rgba(200,220,255,${p.a})`; ctx.lineWidth = Math.max(1, W / 1300); ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p.x + p.l * .28, p.y - p.l); ctx.stroke();
+      }
+    })();
   }
 
   /* ═════ TESSERA AGENTE ═════ */
-  const CFG = (typeof GU !== 'undefined' && GU.db) || {};
-  // legge la sessione salvata dal login principale (non crea un secondo accesso)
-  const CHIAVE_SESS = () => { try { return 'sb-' + new URL(CFG.url).hostname.split('.')[0] + '-auth-token'; } catch { return ''; } };
-  function sessione() { try { const v = JSON.parse(localStorage.getItem(CHIAVE_SESS()) || 'null'); return v?.access_token ? v : (v?.currentSession || null); } catch { return null; } }
   let ultimoToken = null;
   let io2 = null;
   function leggiNick(nick, livello) {
