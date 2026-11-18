@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- versione 2026-11-18-bandi -->
+<!-- versione 2026-11-18-bandi2 -->
 <title>Gang Unit · NOW V4</title>
 <meta name="description" content="Regolamento e manuale operativo della Gang Unit del Los Santos Police Department · NOW V4 Roleplay.">
 <meta property="og:title" content="Gang Unit · NOW V4 — Area Agenti">
@@ -2535,7 +2535,8 @@ const GU = {
       await sb.from('bandi').insert(BANDI_CFG.map(b => ({ id: b.id, dati: senzaId(b), attivo: true, annunciato: true, modificato_da: utente?.nome || 'Sito' })));
       righe = await leggiBandiDB() || [];
     }
-    GU.bandi.splice(0, GU.bandi.length, ...righe.filter(r => r.attivo).map(daRiga));
+    // database ancora vuoto: si vedono i bandi del file, così i cittadini possono candidarsi subito
+    GU.bandi.splice(0, GU.bandi.length, ...(righe.length ? righe.filter(r => r.attivo).map(daRiga) : BANDI_CFG.map(b => ({ ...b }))));
     renderBandi(); homeBando();
     return righe;
   }
@@ -2593,6 +2594,7 @@ const GU = {
     if (az === 'annuncia') return salva({ annunciato: false }, 'Il bot lo annuncia su Discord entro 20 secondi ✓');
     if (az === 'elimina') {
       if (b.dataset.conferma !== '1') { b.dataset.conferma = '1'; b.textContent = '⚠ Clicca di nuovo per eliminare'; setTimeout(() => { if (b.isConnected) { b.dataset.conferma = ''; b.textContent = '🗑 Elimina'; } }, 4000); return; }
+      if (righeCmd.length <= 1) return salva({ attivo: false }, 'È l\'ultimo bando: l\'ho nascosto dal sito invece di cancellarlo');
       const { error } = await sb.from('bandi').delete().eq('id', id); toast(error ? 'Errore: ' + error.message : 'Bando eliminato'); caricaBandiCmd(boxCmd);
     }
   });
