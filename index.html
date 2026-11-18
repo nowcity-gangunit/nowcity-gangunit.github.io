@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- versione 2026-11-18-bandi2 -->
+<!-- versione 2026-11-18-elimina -->
 <title>Gang Unit · NOW V4</title>
 <meta name="description" content="Regolamento e manuale operativo della Gang Unit del Los Santos Police Department · NOW V4 Roleplay.">
 <meta property="og:title" content="Gang Unit · NOW V4 — Area Agenti">
@@ -1243,6 +1243,9 @@ html.gx-raid #principale{animation:gx-trema .12s 10}
 .bx-form{margin-bottom:16px;border-color:var(--oro)!important}
 .bx-form input,.bx-form textarea{width:100%}
 @media (max-width:640px){.bx-griglia{grid-template-columns:1fr}}
+.b-esito{margin:12px 0 0;padding:12px 16px;border-radius:12px;border:1px solid var(--linea2,#26365c);background:var(--pannello);font-size:15px}
+.b-esito.accettata{border-color:var(--verde);background:rgba(53,208,127,.08)}.b-esito.rifiutata{border-color:var(--rosso);background:rgba(255,77,94,.07)}
+.cmd-del{order:9;margin-left:auto;border-color:color-mix(in srgb,var(--rosso) 50%,transparent)!important;color:#ff9aa5!important}
 </style>
 </head>
 <body id="top">
@@ -2186,11 +2189,11 @@ const GU = {
       $$('#cmd-filtri button').forEach(b => { b.setAttribute('aria-pressed', b.dataset.fc === filtroC); b.querySelector('b').textContent = b.dataset.fc === 'tutte' ? data.length : conta(b.dataset.fc); });
       const lista = data.filter(c => filtroC === 'tutte' || c.stato === filtroC);
       box.innerHTML = lista.length ? lista.map(c => `<article class="cmd-card" data-stato="${esc(c.stato)}" data-id="${c.id}">
-        <div class="cmd-testa"><span class="cmd-st">${c.stato === 'in_attesa' ? '🕒 In attesa' : c.stato === 'accettata' ? '✅ Accettata' : '❌ Rifiutata'}</span><b>${esc(c.dati?.['Nome e cognome del personaggio'] || c.discord_nome)}</b><span class="cmd-meta">${esc(c.bando_titolo || c.bando_id)} · ${dataOra(c.creata)} · <a href="https://discord.com/users/${esc(c.discord_id)}" target="_blank" rel="noopener">@${esc(c.discord_nome || c.discord_id)}</a></span></div>
+        <div class="cmd-testa"><button class="btn piccolo cmd-del" type="button" data-del-cand="${c.id}" title="Elimina questa candidatura">🗑 Elimina</button><span class="cmd-st">${c.stato === 'in_attesa' ? '🕒 In attesa' : c.stato === 'accettata' ? '✅ Accettata' : '❌ Rifiutata'}</span><b>${esc(c.dati?.['Nome e cognome del personaggio'] || c.discord_nome)}</b><span class="cmd-meta">${esc(c.bando_titolo || c.bando_id)} · ${dataOra(c.creata)} · <a href="https://discord.com/users/${esc(c.discord_id)}" target="_blank" rel="noopener">@${esc(c.discord_nome || c.discord_id)}</a></span></div>
         <dl class="cmd-dati">${Object.entries(c.dati || {}).map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
         ${c.stato === 'in_attesa' ? `<label class="campo"><span>Messaggio per il candidato (facoltativo, arriva nel DM)</span><textarea rows="2" maxlength="900" placeholder="Es. Ti aspettiamo per il colloquio sabato alle 21"></textarea></label>
         <div class="b-az"><button class="btn p cmd-ok" type="button" data-esito="accettata">✅ Accetta</button><button class="btn cmd-ko" type="button" data-esito="rifiutata">❌ Rifiuta</button></div>`
-        : `<p class="cmd-esito">${c.stato === 'accettata' ? 'Accettata' : 'Rifiutata'} da <b>${esc(c.deciso_da || '—')}</b>${c.deciso_il ? ` il ${dataOra(c.deciso_il)}` : ''} · DM: ${c.dm_inviato ? (c.dm_esito === 'non_consegnato' ? '⚠️ non consegnato (DM chiusi)' : '✓ inviato dal bot') : '⏳ in invio dal bot…'}${c.nota ? `<br>💬 ${esc(c.nota)}` : ''}</p>`}
+        : `<p class="cmd-esito">${c.stato === 'accettata' ? 'Accettata' : 'Rifiutata'} da <b>${esc(c.deciso_da || '—')}</b>${c.deciso_il ? ` il ${dataOra(c.deciso_il)}` : ''} · DM: ${c.dm_inviato ? (c.dm_esito === 'thread' ? '✓ DM chiusi: inviato in privato nel server' : c.dm_esito === 'non_consegnato' ? '⚠️ non è nel server Discord: vede l\'esito sul sito' : '✓ inviato in DM') : '⏳ in invio dal bot…'}${c.nota ? `<br>💬 ${esc(c.nota)}` : ''}</p>`}
       </article>`).join('') : '<div class="cmd-vuoto">Nessuna candidatura in questa lista.</div>';
     } else if (schedaC === 'bandi') {
       await caricaBandiCmd(box);
@@ -2319,8 +2322,8 @@ const GU = {
   const NOMI_S = { aperto: 'Aperto', arrivo: 'In arrivo', chiuso: 'Chiuso' };
   const dataB = s => { const d = new Date(s); return `${dataIt(d)} · ${oraIt(d)}`; };
   const manca = ms => { if (ms <= 0) return '—'; const g = Math.floor(ms / 864e5), h = Math.floor(ms % 864e5 / 36e5), m = Math.floor(ms % 36e5 / 6e4), s = Math.floor(ms % 6e4 / 1e3); return g ? `${g}g ${String(h).padStart(2, '0')}h ${String(m).padStart(2, '0')}m` : `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`; };
-  let mieCand = {};
-  async function mieCandidature() { if (!sb || !utente) { mieCand = {}; return; } const { data } = await sb.from('candidature').select('bando_id,stato').eq('discord_id', utente.id); mieCand = {}; (data || []).forEach(c => { if (!mieCand[c.bando_id] || c.stato === 'in_attesa') mieCand[c.bando_id] = c.stato; }); }
+  let mieCand = {}, mieNote = {};
+  async function mieCandidature() { if (!sb || !utente) { mieCand = {}; return; } const { data } = await sb.from('candidature').select('bando_id,stato,nota').eq('discord_id', utente.id); mieCand = {}; mieNote = {}; const peso = { in_attesa: 3, accettata: 2, rifiutata: 1 }; (data || []).forEach(c => { if ((peso[c.stato] || 0) > (peso[mieCand[c.bando_id]] || 0)) { mieCand[c.bando_id] = c.stato; mieNote[c.bando_id] = c.nota || ''; } }); }
   function renderBandi() {
     const ord = { aperto: 0, arrivo: 1, chiuso: 2 }, inviate = mieCand;
     const lista = [...GU.bandi].sort((a, b) => ord[statoB(a)] - ord[statoB(b)]);
@@ -2329,11 +2332,11 @@ const GU = {
     $('#bandi-lista').innerHTML = lista.length ? lista.map(b => {
       const st = statoB(b), cd = st === 'aperto' ? b.chiusura : st === 'arrivo' ? b.apertura : null, inv = inviate[b.id];
       return `<article class="bando" id="bando-${esc(b.id)}" data-stato="${st}">
-        <div class="b-testa"><span class="b-stato"><i></i>${NOMI_S[st]}</span><span class="b-num">${esc(b.numero)}</span>${inv ? `<span class="b-inv ${esc(inv)}">${inv === 'accettata' ? '✅ Candidatura accettata' : inv === 'rifiutata' ? '❌ Candidatura non accettata' : '🕒 Candidatura inviata · in valutazione'}</span>` : ''}</div>
+        <div class="b-testa"><span class="b-stato"><i></i>${NOMI_S[st]}</span><span class="b-num">${esc(b.numero)}</span>${inv ? `<span class="b-inv ${esc(inv)}">${inv === 'accettata' ? '✅ Candidatura accettata' : inv === 'rifiutata' ? '❌ Candidatura non accettata' : '🕒 Candidatura inviata · in valutazione'}</span>` : ''}</div>${inv && inv !== 'in_attesa' && mieNote[b.id] ? `<div class="b-esito ${esc(inv)}">💬 <b>Messaggio dell'Alto Comando:</b> ${esc(mieNote[b.id])}</div>` : ''}
         <h2>${esc(b.titolo)}</h2><p class="b-sotto">${esc(b.sotto)}</p>
         <div class="b-dati"><div><small>Posti</small><b>${esc(b.posti)}</b></div><div><small>Aperto a</small><b>${esc(b.apertoA)}</b></div><div><small>Apertura</small><b>${dataB(b.apertura)}</b></div><div><small>Chiusura</small><b>${dataB(b.chiusura)}</b></div>${cd ? `<div class="b-cd"><small>${st === 'aperto' ? 'Chiude tra' : 'Apre tra'}</small><b data-cd="${esc(cd)}">${manca(+new Date(cd) - Date.now())}</b></div>` : ''}</div>
         <details class="b-dett"><summary>Leggi il bando completo</summary><p>${esc(b.descrizione)}</p><h4>Requisiti</h4><ul>${b.requisiti.map(r => `<li>${esc(r)}</li>`).join('')}</ul></details>
-        <div class="b-az">${st === 'aperto' ? (inv ? '' : `<button type="button" class="btn p" data-cand="${esc(b.id)}">${utente ? 'Candidati ora →' : 'Accedi con Discord per candidarti'}</button>`) : ''}<button type="button" class="btn" data-annuncio="${esc(b.id)}">📋 Copia annuncio per Discord</button></div>
+        <div class="b-az">${st === 'aperto' ? (inv && inv !== 'rifiutata' ? '' : `<button type="button" class="btn p" data-cand="${esc(b.id)}">${!utente ? 'Accedi con Discord per candidarti' : inv === 'rifiutata' ? 'Ricandidati →' : 'Candidati ora →'}</button>`) : ''}<button type="button" class="btn" data-annuncio="${esc(b.id)}">📋 Copia annuncio per Discord</button></div>
         <div class="b-form" id="form-${esc(b.id)}" hidden></div>
       </article>`;
     }).join('') : '<div class="vuoto" style="display:block">Al momento non ci sono bandi.</div>';
@@ -2610,6 +2613,14 @@ const GU = {
     const { error } = await sb.from('bandi').upsert(riga);
     if (error) { btn.disabled = false; btn.textContent = '💾 Salva bando'; es.innerHTML = `<p class="cand-err">Salvataggio non riuscito: ${esc(error.message)}</p>`; return; }
     toast(d.annuncia ? 'Bando salvato ✓ · il bot lo annuncia su Discord' : 'Bando salvato ✓'); caricaBandiCmd(boxCmd);
+  });
+  // elimina candidatura (due clic per sicurezza)
+  boxCmd.addEventListener('click', async e => {
+    const b = e.target.closest('[data-del-cand]'); if (!b || !comando()) return;
+    if (b.dataset.conferma !== '1') { b.dataset.conferma = '1'; b.textContent = '⚠ Clicca di nuovo'; setTimeout(() => { if (b.isConnected) { b.dataset.conferma = ''; b.textContent = '🗑 Elimina'; } }, 4000); return; }
+    b.disabled = true;
+    const { error } = await sb.from('candidature').delete().eq('id', +b.dataset.delCand);
+    toast(error ? 'Errore: ' + error.message : 'Candidatura eliminata: il candidato può ricandidarsi'); caricaComando();
   });
   caricaBandi();
   const _ab2 = applicaAccesso; applicaAccesso = function () { _ab2(); caricaBandi(); };
